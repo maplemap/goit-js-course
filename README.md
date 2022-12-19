@@ -28,3 +28,7 @@
    `git status`
 2. Виконайте апдейт<br/>
    `git pull`
+
+### Links
+
+- [Команди GIT, які я найчастіше використовуються](https://github.com/joshnh/Git-Commands)
