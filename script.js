@@ -6,10 +6,10 @@
 
 // const apples = 47;
 // const grapes = 135;
-// const total = ;
-// console.log(total)
-// const diff = ;
-// console.log(diff)
+// const total = grapes + apples;
+// console.log(total);
+// const diff = apples - grapes;
+// console.log(diff);
 
 // ## Example 2 - Комбіновані оператори
 
@@ -17,6 +17,7 @@
 
 // let students = 100;
 // students = students + 50;
+// students += 50;
 // console.log(students);
 
 // ## Example 3 - Пріоритет операторів
@@ -24,7 +25,7 @@
 // Розбери пріоритет операторів в інструкції привласнення значення змінної
 // `result`.
 
-// const result = 108 + 223 - 2 * 5;
+// const result = 108 + (223 - 2) * 5;
 // console.log(result);
 
 // ## Example 4 - Клас Math
@@ -34,6 +35,9 @@
 // `Math.round()`. Перевір що буде в консолі при значеннях `27.3` та `27.9`.
 
 // const value = 27.5;
+// console.log(Math.floor(value));
+// console.log(Math.ceil(value));
+// console.log(Math.round(value));
 
 // ## Example 5 - Шаблонні рядки
 
@@ -43,7 +47,9 @@
 // const companyName = 'Cyberdyne Systems';
 // const repairBots = 150;
 // const defenceBots = 50;
-// const message = ``;
+// const message = `Cyberdyne Systems has ${
+//   repairBots + defenceBots
+// } bots in stock`;
 // console.log(message); // "Cyberdyne Systems has 200 bots in stock"
 
 // ## Example 6 - Методи рядків та чейнінг
@@ -60,9 +66,19 @@
 
 // let weight = '88,3';
 // let height = '1.75';
+// weight = weight.replace(',', '.');
+// const indexOfComma = weight.indexOf(',');
+// const firstPartOfWeight = weight.slice(0, indexOfComma);
+// const lastPartOfWeight = weight.slice(indexOfComma + 1);
+// weight = `${firstPartOfWeight}.${lastPartOfWeight}`;
+// console.log(weight);
 
-// const bmi = ;
-// console.log(bmi); // 28.8
+// weight = Number.parseFloat(weight);
+// height = Number.parseFloat(height);
+// // console.log(height);
+
+// const bmi = weight / height ** 2;
+// console.log(Number(bmi.toFixed(1))); // 28.8
 
 // ## Example 7 - Оператори порівняння та приведення типів
 
@@ -110,6 +126,8 @@
 
 // console.log(true && 0 && 'kiwi');
 
+// console.log(1 && 0); //1 ==> true,  5 ==> true
+
 // console.log(true || 3);
 
 // console.log(true || 3 || 4);
@@ -119,8 +137,12 @@
 // console.log(null || 2 || undefined);
 
 // console.log((1 && null && 2) > 0);
+// (1 && null && 2) => null
+// (null > 0) => (0 > 0)
 
 // console.log(null || (2 && 3) || 4);
+//(2 && 3) => 3
+// null || 3 || 4  ==> 3
 
 // ## Example 9 - Значення за замовчуванням та оператор нульового злиття
 
