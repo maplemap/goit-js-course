@@ -31,4 +31,5 @@
 
 ### Links
 
-- [Команди GIT, які я найчастіше використовуються](https://github.com/joshnh/Git-Commands)
+- [Команди GIT, які найчастіше використовуються](https://github.com/joshnh/Git-Commands)
+- [Git курс](https://www.youtube.com/watch?v=W4hoc24K93E&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb)
