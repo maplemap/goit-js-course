@@ -1,24 +1,19 @@
 ## Plan
 
-Lesson 1
+Lesson 1(3):
 
-1. Syntax basics: expressions, instructions, and semicolons
-2. Console tab in Chrome Devtools
-3. Basic primitive types: number, string, boolean, null and undefined
-4. Variables: declaration with let and const, naming
-5. Data output: console.log and alert
-6. Numbers and basic operators
-7. Comparators
-8. Math and Number classes
-9. Strings, string patterns and methods
-10. Type casting (numeric, string, boolean)
-11. Logic operators: &&, ||, !
+1. Arrays: Array Literals, Elements, Indexing, Length
+2. Passing by reference and by value
+3. Array iteration with for and for...of
+4. Basic methods: split and join, indexOf and includes, push, slice and splice, concat
 
-Lesson 2:
+Lesson 2(4):
 
-1. Branches: if, if...else, else...if
-2. Ternary operator
-3. Switch
-4. For loop
-5. 'break' and 'continue' directives
-6. Block Scope
+1. Functional expressions and function declaration
+2. Arguments and parameters, default values of parameters
+3. Return values
+4. Code execution and function call stack
+5. Function visibility
+6. Pseudo array 'arguments'
+7. Debugging code in the Chrome browser
+8. The "Early Returns" pattern
