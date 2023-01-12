@@ -166,7 +166,7 @@
   const langs = ['python', 'javascript', 'c++', 'haskel', 'php', 'ruby'];
 */
 
-const langs = ['python', 'javascript', 'c++', 'haskel', 'php', 'ruby'];
+// const langs = ['python', 'javascript', 'c++', 'haskel', 'php', 'ruby'];
 // const sortedLangs = [];
 
 // while (langs.length > 0) {
@@ -187,7 +187,7 @@ const langs = ['python', 'javascript', 'c++', 'haskel', 'php', 'ruby'];
 // console.log(sortedLangs);
 
 // метод .sort();
-console.log(langs.sort());
+// console.log(langs.sort());
 
 //sortedLangs ['c++', 'haskel', 'javascript', 'php', 'python', 'ruby']
 
