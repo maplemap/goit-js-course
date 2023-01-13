@@ -17,6 +17,18 @@
     console.log(bmi); // 28.8
 */
 
+// const calcBMI = function (weight, height) {
+//   let weightAsNumber = parseFloat(weight.replace(',', '.'));
+//   let heightAsNumber = parseFloat(height);
+
+//   const bmi = weightAsNumber / Math.pow(heightAsNumber, 2);
+
+//   return parseFloat(bmi.toFixed(1));
+// };
+
+// const bmi = calcBMI('88,3', '1.75');
+// console.log(bmi); // 28.8
+
 /* 
     ## Example 2 - Найменше з чисел
 
@@ -26,6 +38,14 @@
     console.log(min(3, -1)); // -1
     console.log(min(1, 1)); // 1
 */
+// Function Expression
+// const min = function (a, b) {
+//   return a < b ? a : b;
+// };
+
+// console.log(min(2, 5)); // 2
+// console.log(min(3, -1)); // -1
+// console.log(min(1, 1)); // 1
 
 /* 
     ## Example 3 - Площа прямокутника
@@ -37,6 +57,17 @@
     function getRectArea(dimensions) {}
     console.log(getRectArea('8 11'));
 */
+// Function Declaration
+// function getRectArea(dimensions) {
+//   const array = dimensions.split(' ');
+//   const width = Number(array[0]);
+//   const height = Number(array[1]);
+
+//   return width * height;
+// }
+// console.log(getRectArea('8 11'));
+// console.log(getRectArea('10 120'));
+// console.log(getRectArea('45 30'));
 
 /* 
     ## Example 4 - Логування елементів
@@ -55,6 +86,17 @@
     logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
 */
 
+// const logItems = function (items) {
+//   for (const item of items) {
+//     const index = items.indexOf(item);
+//     console.log(`${index + 1} - ${item}`);
+//   }
+// };
+
+// logItems(['Mango', 'Poly', 'Ajax']);
+// console.log('======');
+// logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+
 /* 
     ## Example 5 - Логування контактів
 
@@ -72,6 +114,26 @@
     );
 */
 
+// function printContactsInfo(namesString, phonesString) {
+//   const names = namesString.split(',');
+//   const phones = phonesString.split(',');
+
+//   for (const name of names) {
+//     // 1 iteration
+//     // name === Jacob
+//     // index ===
+//     const index = names.indexOf(name);
+//     const phone = phones[index];
+
+//     console.log(`${name}: ${phone}`);
+//   }
+// }
+
+// printContactsInfo(
+//   'Jacob,William,Solomon,Artemis',
+//   '89001234567,89001112233,890055566377,890055566300',
+// );
+
 /* 
     ## Example 6 - Пошук найбільшого елемента
 
@@ -83,6 +145,21 @@
     console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
     console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
 */
+
+// const findLargestNumber = function (numbers) {
+//   let maxNumber = -Infinity;
+
+//   for (const number of numbers) {
+//     if (number > maxNumber) {
+//       maxNumber = number;
+//     }
+//   }
+
+//   return maxNumber;
+// };
+
+// console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
+// console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
 
 /* 
     ## Example 7 - Середнє значення
@@ -96,6 +173,28 @@
     console.log(calAverage(14, 8, 2)); // 8
     console.log(calAverage(27, 43, 2, 8, 36)); // 23.2
 */
+
+// function calAverage() {
+//   //total / count
+//     let total = 0;
+//     console.log(Array.from(arguments));
+//     for (const argument of arguments) {
+//       total += argument;
+//     }
+//     return total / arguments.length;
+// }
+
+// function calAverage(...params) {
+//   let total = 0;
+//   for (const number of params) {
+//     total += number;
+//   }
+//   return total / params.length;
+// }
+
+// console.log(calAverage(1, 2, 3, 4)); // 2.5
+// console.log(calAverage(14, 8, 2)); // 8
+// console.log(calAverage(27, 43, 2, 8, 36)); // 23.2
 
 /* 
     ## Example 8 - Форматування часу
@@ -141,3 +240,21 @@
     updateCourse('Express', 'NestJS');
     console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'NestJS']
 */
+
+/* 
+    ## Example 10 - Call Stack
+*/
+// const multiply = function (a, b) {
+//   return a * b;
+// };
+
+// const square = function (n) {
+//   return multiply(n, n);
+// };
+
+// const printSquare = function (n) {
+//   const result = square(n);
+//   console.log(result);
+// };
+
+// printSquare(2);
