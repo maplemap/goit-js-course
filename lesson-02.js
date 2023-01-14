@@ -202,6 +202,7 @@
     Напиши функцію `formatTime(minutes)` яка переведе значення `minutes`
     (кількість хвилин) у рядок у форматі годин та хвилин `HH:MM`.
 
+    const totalMinutes = 157;
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
     console.log(hours);
