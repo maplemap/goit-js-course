@@ -1,19 +1,16 @@
 ## Plan
 
-Lesson 1(3):
+Lesson 1(5):
 
-1. Arrays: Array Literals, Elements, Indexing, Length
-2. Passing by reference and by value
-3. Array iteration with for and for...of
-4. Basic methods: split and join, indexOf and includes, push, slice and splice, concat
+1. Літерал об'єкта
+2. Властивості та методи об'єкта
+3. this у методах об'єкта при зверненні до властивостей
+4. Перебір об'єктів: for...in і методи Object.keys|values|entries
+5. Робота з масивом об'єктів
 
-Lesson 2(4):
+Lesson 2(6):
 
-1. Functional expressions and function declaration
-2. Arguments and parameters, default values of parameters
-3. Return values
-4. Code execution and function call stack
-5. Function visibility
-6. Pseudo array 'arguments'
-7. Debugging code in the Chrome browser
-8. The "Early Returns" pattern
+1. Операції spread і rest
+2. Деструктуризація об'єктів
+3. Деструктуризація масивів
+4. Паттерн "Об'єкт параметрів""
