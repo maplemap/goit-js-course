@@ -217,24 +217,46 @@ const account = {
   /*
    * Метод шукає та повертає об'єкт транзакції по id
    */
-  getTransactionDetails(id) {},
+  getTransactionDetails(id) {
+    for (const transaction of this.transactions) {
+      if (transaction.id === id) {
+        return transaction;
+      }
+    }
+
+    console.error(`Транзакція з ID:${id} не знайдена`);
+    return null;
+  },
 
   /*
    * Метод повертає кількість коштів
    * певного типу транзакції з усієї історії транзакцій
    */
-  getTransactionTotal(type) {},
+  getTransactionTotal(type) {
+    let totalAmount = 0;
+
+    for (const transaction of this.transactions) {
+      if (transaction.type === type) {
+        totalAmount += transaction.amount;
+      }
+    }
+
+    return totalAmount;
+  },
 };
 
-// console.log('getBalance', account.getBalance());
+account.deposit(120);
+account.withdraw(80);
+account.deposit(400);
+account.withdraw(30);
+account.deposit(300);
+account.deposit(200);
+account.deposit(230);
+account.withdraw(56);
 
-// account.deposit(120);
-// console.log('getBalance', account.getBalance());
-// console.log('getTransactions', account.getTransactions());
+console.log(account.getTransactionTotal(TRANSACTION.WITHDRAW));
 
-// account.withdraw(80);
-// console.log('getTransactions', account.getTransactions());
-// console.log('getBalance', account.getBalance());
+// console.log(account.getTransactionDetails(11));
 
 // const products = [
 //   {name: 'Radar', price: 1300, quantity: 4},
