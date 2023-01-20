@@ -226,15 +226,15 @@ const account = {
   getTransactionTotal(type) {},
 };
 
-console.log('getBalance', account.getBalance());
+// console.log('getBalance', account.getBalance());
 
-account.deposit(120);
-console.log('getBalance', account.getBalance());
-console.log('getTransactions', account.getTransactions());
+// account.deposit(120);
+// console.log('getBalance', account.getBalance());
+// console.log('getTransactions', account.getTransactions());
 
-account.withdraw(80);
-console.log('getTransactions', account.getTransactions());
-console.log('getBalance', account.getBalance());
+// account.withdraw(80);
+// console.log('getTransactions', account.getTransactions());
+// console.log('getBalance', account.getBalance());
 
 // const products = [
 //   {name: 'Radar', price: 1300, quantity: 4},

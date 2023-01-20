@@ -98,17 +98,10 @@
 
     Перепиши функцію так, щоб вона приймала об'єкт параметрів із властивостями
     `companyName` та `stock` та виводила репорт про кількість товарів на складі будь-якої
-    компанії.
+    компанії у вигляді `${companyName} has ${total} items in stock`.
 
 
-    // Рішення
-    function getStockReport({ companyName, stock }) {
-    let total = 0;
-    for (const value of Object.values(stock)) {
-        total += value;
-    }
-    return `${companyName} has ${total} items in stock`;
-    }
+    function getStockReport(companyName, stock) {}
 
     console.log(
     getStockReport({
@@ -136,18 +129,15 @@
     ## Example 5 - Операція spread
 
     Доповни функцію `createContact(partialContact)` так, щоб вона повертала новий
-    об'єкт контакту з доданими властивостями `id` та `createdAt`, а також `list` зі
-    значенням "default" якщо в `partialContact` немає такої властивості.
+    об'єкт контакту з доданими властивостями `id`(generateId) та `createdAt`(Date.now()), 
+    а також `list` зі значенням "default" якщо в `partialContact` немає такої властивості.
 
+    function generateId() {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    }
 
-    // Рішення
     function createContact(partialContact) {
-    return {
-        list: 'default',
-        ...partialContact,
-        id: generateId(),
-        createdAt: Date.now(),
-    };
+        return {};
     }
 
     console.log(
@@ -163,10 +153,6 @@
         email: 'poly@hotmail.com',
     }),
     );
-
-    function generateId() {
-    return '_' + Math.random().toString(36).substr(2, 9);
-    }
 */
 
 /* 
@@ -176,12 +162,8 @@
     `fullName`, замість `firstName` та `lastName`.
 
 
-    // Рішення
-    function transformUsername({ firstName, lastName, ...otherProps }) {
-    return {
-        fullName: `${firstName} ${lastName}`,
-        ...otherProps,
-    };
+    function transformUsername() {
+     return {};
     }
 
     console.log(
