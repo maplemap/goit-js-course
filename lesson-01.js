@@ -245,16 +245,16 @@ const account = {
   },
 };
 
-account.deposit(120);
-account.withdraw(80);
-account.deposit(400);
-account.withdraw(30);
-account.deposit(300);
-account.deposit(200);
-account.deposit(230);
-account.withdraw(56);
+// account.deposit(120);
+// account.withdraw(80);
+// account.deposit(400);
+// account.withdraw(30);
+// account.deposit(300);
+// account.deposit(200);
+// account.deposit(230);
+// account.withdraw(56);
 
-console.log(account.getTransactionTotal(TRANSACTION.WITHDRAW));
+// console.log(account.getTransactionTotal(TRANSACTION.WITHDRAW));
 
 // console.log(account.getTransactionDetails(11));
 
