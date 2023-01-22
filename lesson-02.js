@@ -1,349 +1,227 @@
-/* # Модуль 3 Заняття 6. Деструктуризація та rest/spread */
+/* # Модуль 4. Заняття 8. Перебираючі методи масиву */
 
-/* 
-    ## Example 1 - Деструктуризація
+//## Колекція об'єктів для всіх прикладів з автомобілями
+const cars = [
+  {
+    make: 'Honda',
+    model: 'CR-V',
+    type: 'suv',
+    amount: 14,
+    price: 24045,
+    onSale: true,
+  },
+  {
+    make: 'Honda',
+    model: 'Accord',
+    type: 'sedan',
+    amount: 2,
+    price: 22455,
+    onSale: true,
+  },
+  {
+    make: 'Mazda',
+    model: 'Mazda 6',
+    type: 'sedan',
+    amount: 8,
+    price: 24195,
+    onSale: false,
+  },
+  {
+    make: 'Mazda',
+    model: 'CX-9',
+    type: 'suv',
+    amount: 7,
+    price: 31520,
+    onSale: true,
+  },
+  {
+    make: 'Toyota',
+    model: '4Runner',
+    type: 'suv',
+    amount: 19,
+    price: 34210,
+    onSale: false,
+  },
+  {
+    make: 'Toyota',
+    model: 'Sequoia',
+    type: 'suv',
+    amount: 16,
+    price: 45560,
+    onSale: false,
+  },
+  {
+    make: 'Toyota',
+    model: 'Tacoma',
+    type: 'truck',
+    amount: 4,
+    price: 24320,
+    onSale: true,
+  },
+  {
+    make: 'Ford',
+    model: 'F-150',
+    type: 'truck',
+    amount: 11,
+    price: 27110,
+    onSale: true,
+  },
+  {
+    make: 'Ford',
+    model: 'Fusion',
+    type: 'sedan',
+    amount: 13,
+    price: 22120,
+    onSale: true,
+  },
+  {
+    make: 'Ford',
+    model: 'Explorer',
+    type: 'suv',
+    amount: 6,
+    price: 31660,
+    onSale: false,
+  },
+];
 
-    Перепиши функцію так, щоб вона приймала один об'єкт параметрів замість набору
-    незалежних аргументів.
+/*
+    ## Example 1 - Метод map
 
+    Нехай функція `getModels` повертає масив моделей (поле model) всіх
+    автомобілів.
 
-    function calcBMI(weight, height) {
-    const numericWeight = Number(weight.replace(',', '.'));
-    const numericHeight = Number(height.replace(',', '.'));
-    return Number((numericWeight / numericHeight ** 2).toFixed(1));
-    }
+    const getModels = cars => {};
 
-    // Було
-    // console.log(calcBMI('88,3', '1.75'));
-    // console.log(calcBMI('68,3', '1.65'));
-    // console.log(calcBMI('118,3', '1.95'));
-
-    // Очікується
-    console.log(
-    calcBMI({
-        weight: '88,3',
-        height: '1.75',
-    }),
-    );
-    console.log(
-    calcBMI({
-        weight: '68,3',
-        height: '1.65',
-    }),
-    );
-    console.log(
-    calcBMI({
-        weight: '118,3',
-        height: '1.95',
-    }),
-    ); 
+    console.table(getModels(cars));
 */
 
-// function calcBMI({weight, height}) {
-//   const numericWeight = Number(weight.replace(',', '.'));
-//   const numericHeight = Number(height.replace(',', '.'));
-//   return Number((numericWeight / numericHeight ** 2).toFixed(1));
-// }
+/*
+    ## Example 2 - Метод map
 
-// console.log(
-//   calcBMI({
-//     weight: '88,3',
-//     height: '1.75',
-//   }),
-// );
+    Нехай функція `makeCarsWithDiscount` повертає новий масив об'єктів із змінним
+    значенням властивості `price` залежно від переданої знижки.
 
-// console.log(
-//   calcBMI({
-//     weight: '68,3',
-//     height: '1.65',
-//   }),
-// );
-// console.log(
-//   calcBMI({
-//     weight: '118,3',
-//     height: '1.95',
-//   }),
-// );
+    const makeCarsWithDiscount = (cars, discount) => {};
 
-/* 
-    ## Example 2 - Деструктуризація
-
-    Перепиши функцію так, щоб вона приймала один об'єкт параметрів замість набору
-    незалежних аргументів.
-
-
-    function printContactsInfo(names, phones) {
-    const nameList = names.split(',');
-    const phoneList = phones.split(',');
-    for (let i = 0; i < nameList.length; i += 1) {
-        console.log(`${nameList[i]}: ${phoneList[i]}`);
-    }
-    }
-
-    // Було
-    // printContactsInfo(
-    //   'Jacob,William,Solomon,Artemis',
-    //   '89001234567,89001112233,890055566377,890055566300',
-    // );
-
-    // Очікується
-    printContactsInfo({
-    names: 'Jacob,William,Solomon,Artemis',
-    phones: '89001234567,89001112233,890055566377,890055566300',
-    });
+    console.table(makeCarsWithDiscount(cars, 0.2));
+    console.table(makeCarsWithDiscount(cars, 0.4));
 */
 
-// function printContactsInfo({names, phones}) {
-//   const nameList = names.split(',');
-//   const phoneList = phones.split(',');
-//   for (let i = 0; i < nameList.length; i += 1) {
-//     console.log(`${nameList[i]}: ${phoneList[i]}`);
-//   }
-// }
+/*
+    ## Example 3 - Метод filter
 
-// printContactsInfo({
-//   phones: '89001234567,89001112233,890055566377,890055566300',
-//   names: 'Jacob,William,Solomon,Artemis',
-// });
+    Нехай функція `filterByPrice` повертає масив автомобілів ціна яких менша
+    ніж значення параметра `threshold`.
 
-/* 
-    ## Example 3 - Глибока деструктуризація
+    const filterByPrice = (cars, threshold) => {};
 
-    Перепиши функцію так, щоб вона приймала один об'єкт параметрів замість набору
-    незалежних аргументів.
-
-
-    function getBotReport(companyName, repairBots, defenceBots) {
-    return `${companyName} has ${repairBots + defenceBots} bots in stock`;
-    }
-
-    // Було
-    // console.log(getBotReport('Cyberdyne Systems', 150, 50));
-
-    // Очікується
-    console.log(
-    getBotReport({
-        companyName: 'Cyberdyne Systems',
-        bots: {
-        repair: 150,
-        defence: 50,
-        },
-    }),
-    ); // "Cyberdyne Systems has 200 bots in stock"
+    console.table(filterByPrice(cars, 30000));
+    console.table(filterByPrice(cars, 25000));
 */
 
-// function getBotReport({companyName, bots: {repair, defence}}) {
-//   return `${companyName} has ${repair + defence} bots in stock`;
-// }
+/*
+    ## Example 4 - Метод filter
 
-// console.log(
-//   getBotReport({
-//     companyName: 'Cyberdyne Systems',
-//     bots: {
-//       repair: 150,
-//       defence: 50,
-//     },
-//   }),
-// );
+    Нехай функція `getCarsWithDiscount` повертає масив автомобілів властивість
+    onSale яких true.
 
-// const {
-//   companyName,
-//   bots: {repair, defence},
-// } = {
-//   companyName: 'Cyberdyne Systems',
-//   bots: {
-//     repair: 150,
-//     defence: 50,
-//   },
-// };
+    const getCarsWithDiscount = cars => {};
 
-// console.log(companyName, repair, defence);
-
-/* 
-    ## Example 4 - Деструктуризація
-
-    Перепиши функцію так, щоб вона приймала об'єкт параметрів із властивостями
-    `companyName` та `stock` та виводила репорт про кількість товарів на складі будь-якої
-    компанії у вигляді `${companyName} has ${total} items in stock`.
-
-
-    function getStockReport(companyName, stock) {}
-
-    console.log(
-    getStockReport({
-        companyName: 'Cyberdyne Systems',
-        stock: {
-        repairBots: 150,
-        defenceBots: 50,
-        },
-    }),
-    ); // "Cyberdyne Systems has 200 items in stock"
-
-    console.log(
-    getStockReport({
-        companyName: 'Belacci',
-        stock: {
-        shoes: 20,
-        skirts: 10,
-        hats: 5,
-        },
-    }),
-    ); // "Belacci has 35 item in stock"
+    console.table(getCarsWithDiscount(cars));
 */
 
-// function getStockReport({companyName, stock}) {
-//   const goodsPrices = Object.values(stock);
-//   let total = 0;
+/*
+    ## Example 5 - Метод filter
 
-//   for (const goodsPrice of goodsPrices) {
-//     total += goodsPrice;
-//   }
+    Нехай функція `getCarsWithType` повертає масив автомобілів тип яких
+    збігається зі значенням параметра `type`.
 
-//   return `${companyName} has ${total} items in stock`;
-// }
+    const getCarsWithType = (cars, type) => {};
 
-// console.log(
-//   getStockReport({
-//     companyName: 'Cyberdyne Systems',
-//     stock: {
-//       repairBots: 150,
-//       defenceBots: 50,
-//     },
-//   }),
-// ); // "Cyberdyne Systems has 200 items in stock"
-
-// console.log(
-//   getStockReport({
-//     companyName: 'Belacci',
-//     stock: {
-//       shoes: 20,
-//       skirts: 10,
-//       hats: 5,
-//     },
-//   }),
-// ); // "Belacci has 35 item in stock"
-
-/* 
-    ## Example 5 - Операція spread
-
-    Доповни функцію `createContact(partialContact)` так, щоб вона повертала новий
-    об'єкт контакту з доданими властивостями `id`(generateId) та `createdAt`(Date.now()), 
-    а також `list` зі значенням "default" якщо в `partialContact` немає такої властивості.
-
-    function generateId() {
-        return '_' + Math.random().toString(36).substr(2, 9);
-    }
-
-    function createContact(partialContact) {
-        return {};
-    }
-
-    console.log(
-    createContact({
-        name: 'Mango',
-        email: 'mango@mail.com',
-        list: 'friends',
-    }),
-    );
-    console.log(
-    createContact({
-        name: 'Poly',
-        email: 'poly@hotmail.com',
-    }),
-    );
+    console.table(getCarsWithType(cars, 'suv'));
+    console.table(getCarsWithType(cars, 'sedan'));
 */
 
-// function generateId() {
-//   return '_' + Math.random().toString(36).slice(2);
-// }
-
-// function createContact(partialContact) {
-//   //   const defaultContactData = {
-//   //     id: generateId(),
-//   //     createdAt: Date.now(),
-//   //     list: 'default',
-//   //   };
-
-//   return {
-//     // ...defaultContactData,
-//     id: generateId(),
-//     createdAt: Date.now(),
-//     list: 'default',
-//     ...partialContact,
-//   };
-// }
-
-// console.log(
-//   createContact({
-//     name: 'Mango',
-//     email: 'mango@mail.com',
-//     list: 'friends',
-//   }),
-// );
-// console.log(
-//   createContact({
-//     name: 'Poly',
-//     email: 'poly@hotmail.com',
-//   }),
-// );
-
-/* 
-    ## Example 6 - Операція rest
-
-    Напиши функцію `transformUsername(user)` так, щоб вона повертала новий об'єкт із властивістю
-    `fullName`, замість `firstName` та `lastName`.
+/*
+    ## Example 6 - Метод find
 
 
-    function transformUsername() {
-     return {};
-    }
+    const getCarByModel = (cars, model) => {};
 
-    console.log(
-    transformId({
-        id: 1,
-        firstName: 'Jacob',
-        lastName: 'Mercer',
-        email: 'j.mercer@mail.com',
-        friendCount: 40,
-    }),
-    );
-
-    console.log(
-    transformId({
-        id: 2,
-        firstName: 'Adrian',
-        lastName: 'Cross',
-        email: 'a.cross@hotmail.com',
-        friendCount: 20,
-    }),
-    );
+    console.log(getCarByModel(cars, 'F-150'));
+    console.log(getCarByModel(cars, 'CX-9'));
 */
 
-function transformUsername({firstName, lastName, ...restParams}) {
-  return {
-    ...restParams,
-    fullName: `${firstName} ${lastName}`,
-  };
-}
+/*
+    ## Example 7 - Метод sort
 
-// console.log(
-//   transformUsername({
-//     id: 1,
-//     firstName: 'Jacob',
-//     lastName: 'Mercer',
-//     email: 'j.mercer@mail.com',
-//     friendCount: 40,
-//     friends: ['sdfsdf', 'sdfsdf', 'sdasdasd'],
-//     address: 'Address',
-//   }),
-// );
+    Нехай функція `sortByAscendingAmount` повертає новий масив автомобілів відсортований за 
+    зростанням значення якості `amount`.
 
-// console.log(
-//   transformUsername({
-//     id: 2,
-//     firstName: 'Adrian',
-//     lastName: 'Cross',
-//     email: 'a.cross@hotmail.com',
-//     friendCount: 20,
-//   }),
-// );
+
+    const sortByAscendingAmount = cars => {};
+
+    console.table(sortByAscendingAmount(cars));
+*/
+
+/*
+    ## Example 8 - Метод sort
+
+    Нехай функція `sortByDescendingPrice` повертає новий масив автомобілів
+    відсортований за зменшенням значення властивості `price`.
+
+
+    const sortByDescendingPrice = cars => {};
+
+    console.table(sortByDescendingPrice(cars));
+*/
+
+/*
+    ## Example 9 - Метод sort
+
+    Нехай функція `sortByModel` повертає новий масив автомобілів відсортований
+    за назвою моделі в алфавітному та зворотному алфавітному порядку, в залежності від
+    значення параметра `order`.
+
+
+    const sortByModel = (cars, order) => {};
+
+    console.table(sortByModel(cars, 'asc'));
+    console.table(sortByModel(cars, 'desc'));
+*/
+
+/*
+    ## Example 10 - Метод reduce
+
+    Нехай функція `getTotalAmount` повертає загальну кількість автомобілів (значення
+    властивостей `amount`).
+
+
+    const getTotalAmount = cars => {};
+
+    console.log(getTotalAmount(cars));
+*/
+
+/* 
+    ## Example 11 - Ланцюжки методів
+
+    Нехай функція `getAvailableCarNames` повертає масив моделей автомобілів, але
+    тільки тих, які зараз на розпродажі.
+
+
+    const getModelsOnSale = cars => {};
+
+    console.table(getModelsOnSale(cars));
+*/
+
+/*
+    ## Example 12 - Ланцюжки методів
+
+    Нехай функція `getSortedCarsOnSale` повертає масив автомобілів на розпродажі
+    (Властивість onSale), відсортованих за зростанням ціни.
+
+
+    const getSortedCarsOnSale = cars => {};
+
+    console.table(getSortedCarsOnSale(cars));
+*/

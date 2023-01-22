@@ -1,291 +1,177 @@
-/* # Модуль 3. Заняття 1. Об'єкти */
+/* # Модуль 4. Заняття 7. Коллбеки. Стрілочні функції. forEach */
 
 /* 
-  ## Example 1 - Основи об'єктів
+    ## Example 1 - Коллбек функції
 
-  Напиши скрипт, який для об'єкта `user`, послідовно:
+    Напишіть наступні функції:
 
-  - додає поле `mood` зі значенням `'happy'`
-  - замінює значення `hobby` на `'skydiving'`
-  - замінює значення `premium` на `false`
-  - виводить вміст об'єкта `user` у форматі `ключ:значення` використовуючи `for...in`
-  - виводить вміст об'єкта `user` у форматі `ключ:значення` використовуючи
-    `Object.keys()` та `for...of`
+    - `createProduct(obj, callback)` - приймає об'єкт товару без id, а також
+      коллбек. Функція створює об'єкт товару, додаючи йому унікальний ідентифікатор у
+      властивість `id` та викликає коллбек передаючи йому створений об'єкт.
+    - `logProduct(product)` - колббек приймаючий об'єкт продукту і логуючий його в
+      консоль
+    - `logTotalPrice(product)` - колббек, що приймає об'єкт продукту і логіює загальну 
+      вартість товару в консоль
 
-  ### Код
-  const user = {
-    name: 'Mango',
-    age: 20,
-    hobby: 'html',
-    premium: true,
-  }; 
+
+    function createProduct(partialProduct, callback) {
+    }
+
+    function logProduct(product) {
+    }
+
+    function logTotalPrice(product) {
+    }
+
+    createProduct({name: '🍎', price: 30, quantity: 3}, logProduct);
+    createProduct({name: '🍋', price: 20, quantity: 5}, logTotalPrice);
 */
 
-const user = {
-  name: 'Mango',
-  age: 20,
-  hobby: 'html',
-  premium: true,
-};
-// console.log('перед змінами', user);
-
-//додає поле `mood` зі значенням `'happy'`
-// user.mood = 'happy';
-// const key = 'mood';
-// user[key] = 'happy';
-
-const newKey = 'own-phone';
-user[newKey] = 'dfsdfsdfs';
-
-//замінює значення `hobby` на `'skydiving'`
-// user.hobby = 'skydiving';
-user['hobby'] = 'skydiving';
-user.premium = false;
-
-// виводить вміст об'єкта `user` у форматі `ключ:значення` використовуючи
-// `Object.keys()` та `for...of`
-
-// const keys = Object.keys(user);
-// console.log(keys);
-
-// for (const key of keys) {
-//   console.log(`${key}: ${user[key]}`);
-// }
-
 /* 
-  ## Example 2 - метод Object.values()
+  ## Example 2 - Коллбек функції
 
-  У нас є об'єкт, де зберігаються зарплати нашої команди. Напишіть код для
-  підсумовування всіх зарплат і збережіть результат у змінній sum. Повинно
-  вийти 390. Якщо об'єкт `salaries` порожній, то результат має бути 0.
+  Додайте об'єкт `account` методи `withdraw(amount, onSuccess, onError)` та
+  `deposit(amount, onSuccess, onError)`, де перший параметр це сума операції, а
+  другий та третій - коллбеки.
 
-  ### Код
-  const salaries = {
-    John: 100,
-    Ann: 160,
-    Pete: 130,
-  }; 
+  Метод `withdraw` викликає onError якщо amount більше TRANSACTION_LIMIT або
+  this.balance, і onSuccess в іншому випадку.
+
+  Метод `deposit` викликає onError якщо amount більше TRANSACTION_LIMIT або менше
+  або дорівнює нулю, і onSuccess в іншому випадку.
+
+  const TRANSACTION_LIMIT = 1000;
+
+  const account = {
+    username: 'Jacob',
+    balance: 400,
+    withdraw(amount, onSuccess, onError) {
+    },
+    deposit(amount, onSuccess, onError) {
+    },
+  };
+
+  function handleSuccess(message) {
+    console.log(`✅ Success! ${message}`);
+  }
+  function handleError(message) {
+    console.log(`❌ Error! ${message}`);
+  }
+
+  account.withdraw(2000, handleSuccess, handleError);
+  account.withdraw(600, handleSuccess, handleError);
+  account.withdraw(300, handleSuccess, handleError);
+  account.deposit(1700, handleSuccess, handleError);
+  account.deposit(0, handleSuccess, handleError);
+  account.deposit(-600, handleSuccess, handleError);
+  account.deposit(600, handleSuccess, handleError);
 */
 
-// const salaries = {
-//   John: 100,
-//   Ann: 160,
-//   Pete: 100,
-// };
-// const keys = Object.keys(salaries);
-// let sum = 0;
-
-// for (const key of keys) {
-//   // console.log(salaries[key]);
-//   sum += salaries[key];
-// }
-
-// const values = Object.values(salaries);
-
-// for (const value of values) {
-//   sum += value;
-// }
-
-// console.log(sum);
-
 /* 
-  ## Example 3 - Масив об'єктів
+  ## Example 3 - Коллбек функції
 
-  Напишіть функцію `calcTotalPrice(stones, stoneName)`, яка приймає масив
-  об'єктів та рядок з назвою каменю. Функція рахує і повертає загальну вартість
-  каміння з таким ім'ям, ціною та кількістю з об'єкта
+  Напишіть функцію `each(array, callback)`, яка першим параметром очікує
+  масив, а другим - функцію, яка застосовується до кожного елемента масиву.
+  Функція each повинна повернути новий масив, елементами якого будуть результати
+  виклику коллбека.
 
-  ### Код
-  const stones = [
-    { name: 'Смарагд', price: 1300, quantity: 4 },
-    { name: 'Діамант', price: 2700, quantity: 3 },
-    { name: 'Сапфір', price: 400, quantity: 7 },
-    { name: 'Щебінь', price: 200, quantity: 2 },
-  ]; 
+  function each(array, callback) {}
+
+  console.log(
+    each([64, 49, 36, 25, 16], function (value) {
+      return value * 2;
+    }),
+  );
+  console.log(
+    each([64, 49, 36, 25, 16], function (value) {
+      return value - 10;
+    }),
+  );
+  console.log(
+    each([64, 49, 36, 25, 16], function (value) {
+      return Math.sqrt(value);
+    }),
+  );
+  console.log(
+    each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+      return Math.ceil(value);
+    }),
+  );
+  console.log(
+    each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+      return Math.floor(value);
+    }),
+  );
 */
 
-// const stones = [
-//   {name: 'Смарагд', price: 1300, quantity: 4},
-//   {name: 'Діамант', price: 2700, quantity: 3},
-//   {name: 'Сапфір', price: 400, quantity: 7},
-//   {name: 'Щебінь', price: 200, quantity: 2},
-// ];
-
-// const calcTotalPrice = function (stones, stoneName) {
-//   console.log('stoneName: ', stoneName);
-
-//   for (const stone of stones) {
-//     if (stoneName === stones.name) {
-//       console.log(stone);
-//       return stone.price * stone.quantity;
-//     }
-//   }
-
-//   return 0;
-// };
-
-// console.log(calcTotalPrice(stones, 'Смарагд'));
-
 /* 
-  ## Example 4 - Комплексні завдання
+  ## Example 4 - Стрілочні функції
 
-  Напиши скрипт управління особистим кабінетом інтернет банку. Є об'єкт `account`
-  в якому необхідно реалізувати методи для роботи з балансом та історією
-  транзакцій. 
+  Виконайте рефакторинг коду за допомогою стрілочних функцій приклад з 1-го завдання 
 */
 
 /*
- * Типів транзакцій всього два.
- * Можна покласти чи зняти гроші з рахунку.
- */
-const DEFAULT_NAME = 'name';
-const DEFAULT_AMOUNT = 100;
-const TIMEOUT = 3000;
+  ## Example 5 - Стрілочні функції
 
-const TRANSACTION = {
-  DEPOSIT: 'deposit', //покласти
-  WITHDRAW: 'withdraw', //зняти
-};
+  Виконайте рефакторинг коду за допомогою стрілочних функцій приклад з 2-го завдання
+*/
+
+/* 
+  ## Example 6 - Інлайн стрілочні функції
+
+  Виконайте рефакторинг коду за допомогою стрілочних функцій приклад з 3-го завдання
+*/
+
+/* 
+  ## Example 7 - Метод forEach
+
+  Виконайте рефакторинг коду за допомогою методу `forEach` та стрілочні функції.
+
+  function logItems(items) {
+    console.log(items);
+    for (let i = 0; i < items.length; i += 1) {
+        console.log(`${i + 1} - ${items[i]}`);
+      }
+  }
+
+  logItems(['Mango', 'Poly', 'Ajax']);
+  logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+*/
 
 /*
- * Кожна транзакція це об'єкт із властивостями: id, type та amount
- * транзакція це {id: '', type: '', amount: ''}
- */
+  ## Example 8 - Метод forEach
 
-const account = {
-  // Поточний баланс рахунку
-  balance: 0,
+  Виконайте рефакторинг коду за допомогою методу `forEach` та стрілочні функції.
 
-  // Історія транзакцій
-  transactions: [],
+  function printContactsInfo({names, phones}) {
+    const nameList = names.split(',');
+    const phoneList = phones.split(',');
 
-  /*
-   * Метод створює та повертає об'єкт транзакції.
-   * Приймає суму та тип транзакції.
-   */
-  createTransaction(amount, type) {
-    return {
-      type,
-      amount,
-      id: this.transactions.length,
-    };
-  },
-
-  /*
-   * Метод, що відповідає за додавання суми до балансу.
-   * Приймає суму транзакції.
-   * Викликає createTransaction для створення об'єкта транзакції
-   * після чого додає його до історії транзакцій
-   */
-  deposit(amount) {
-    this.balance += amount;
-
-    const transaction = this.createTransaction(amount, TRANSACTION.DEPOSIT);
-    this.transactions.push(transaction);
-  },
-
-  /*
-   * Метод, що відповідає за зняття суми з балансу.
-   * Приймає суму транзакції.
-   * Викликає createTransaction для створення об'єкта транзакції
-   * після чого додає його до історії транзакцій.
-   *
-   * Якщо amount більше ніж поточний баланс, виводь повідомлення
-   * про те, що зняття такої суми не можливе, недостатньо коштів.
-   */
-  withdraw(amount) {
-    if (amount <= this.balance) {
-      this.balance -= amount;
-      const transaction = this.createTransaction(amount, TRANSACTION.WITHDRAW);
-      this.transactions.push(transaction);
-    } else {
-      console.error('Недостатньо коштів на рахунку');
+    for (let i = 0; i < nameList.length; i += 1) {
+      console.log(`${nameList[i]}: ${phoneList[i]}`);
     }
-  },
+  }
 
-  /*
-   * Метод повертає поточний баланс
-   */
-  getBalance() {
-    return this.balance;
-  },
+  printContactsInfo({
+    names: 'Jacob,William,Solomon,Artemis',
+    phones: '89001234567,89001112233,890055566377,890055566300',
+  });
+*/
 
-  getTransactions() {
-    return this.transactions;
-  },
+/*
+  ## Example 9 - Метод forEach
 
-  /*
-   * Метод шукає та повертає об'єкт транзакції по id
-   */
-  getTransactionDetails(id) {
-    for (const transaction of this.transactions) {
-      if (transaction.id === id) {
-        return transaction;
-      }
+  Виконайте рефакторинг коду за допомогою методу `forEach` та стрілочні функції.
+
+  function calсulateAverage(...args) {
+    let total = 0;
+    for (let i = 0; i < args.length; i++) {
+      total += args[i];
     }
+    return total / args.length;
+  }
 
-    console.error(`Транзакція з ID:${id} не знайдена`);
-    return null;
-  },
-
-  /*
-   * Метод повертає кількість коштів
-   * певного типу транзакції з усієї історії транзакцій
-   */
-  getTransactionTotal(type) {
-    let totalAmount = 0;
-
-    for (const transaction of this.transactions) {
-      if (transaction.type === type) {
-        totalAmount += transaction.amount;
-      }
-    }
-
-    return totalAmount;
-  },
-};
-
-// account.deposit(120);
-// account.withdraw(80);
-// account.deposit(400);
-// account.withdraw(30);
-// account.deposit(300);
-// account.deposit(200);
-// account.deposit(230);
-// account.withdraw(56);
-
-// console.log(account.getTransactionTotal(TRANSACTION.WITHDRAW));
-
-// console.log(account.getTransactionDetails(11));
-
-// const products = [
-//   {name: 'Radar', price: 1300, quantity: 4},
-//   {name: 'Scanner', price: 2700, quantity: 3},
-//   {name: 'Droid', price: 400, quantity: 7},
-//   {name: 'Grip', price: 1200, quantity: 9},
-// ];
-
-// Напиши функцію calculateTotalPrice(productName),
-// яка приймає один параметр productName - назва товару.
-// Функція повинна повернути загальну вартість (ціна * кількість) товару з таким ім'ям з масиву products.
-
-// function calculateTotalPrice(productName) {
-//   console.log('productName: ', productName);
-//   // знайти
-//   // перемножити price на quantity
-//   // повернути результат
-
-//   for (const product of products) {
-//     if (productName === product.name) {
-//       return product.price * product.quantity;
-//     }
-//   }
-
-//   return 0;
-// }
-
-// console.log(calculateTotalPrice('Blaster')); // повертає 0
-// console.log(calculateTotalPrice('Radar')); // повертає 5200
-// console.log(calculateTotalPrice('Droid')); // повертає 2800
-// console.log(calculateTotalPrice('Grip')); // повертає 10800
-// console.log(calculateTotalPrice('Scanner')); // повертає 8100
+  console.log(calсulateAverage(1, 2, 3, 4)); // 2.5
+  console.log(calсulateAverage(14, 8, 2)); // 8
+  console.log(calсulateAverage(27, 43, 2, 8, 36)); // 23.2
+*/
