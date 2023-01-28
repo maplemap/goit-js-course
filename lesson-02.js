@@ -534,13 +534,13 @@ const cars = [
 // console.log(result);
 
 /* reduce який повертає строку */
-const result = cars.reduce((acc, car) => {
-  acc += `_${car.model}`;
+// const result = cars.reduce((acc, car) => {
+//   acc += `_${car.model}`;
 
-  return acc;
-}, ''); //{totalAmount, totalPrice}
+//   return acc;
+// }, '');
 
-console.log(result);
+// console.log(result);
 /* 
 
 
