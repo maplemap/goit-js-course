@@ -18,8 +18,8 @@
   кількість постів, які потрібно додати користувачеві.
 
 
-  const mango = new User({
-    name: 'mango@mail.com',
+  const mango = new Blogger({
+    email: 'mango@mail.com',
     age: 24,
     numberOfPosts: 20,
     topics: ['tech', 'cooking'],
@@ -28,8 +28,8 @@
   mango.updatePostCount(5);
   console.log(mango.getInfo()); // User mango@mail.com is 24 years old and has 25 posts
 
-  const poly = new User({
-    name: 'poly@mail.com',
+  const poly = new Blogger({
+    email: 'poly@mail.com',
     age: 19,
     numberOfPosts: 17,
     topics: ['sports', 'gaming', 'health'],
@@ -63,8 +63,8 @@
   ## Example 2 - Сховище
 
   Напиши клас `Storage` який створює об'єкти для керування складом товарів.
-  При виклику отримуватиме один аргумент - початковий масив товарів і записуватиме
-  його властивість `items`.
+  При виклику отримуватиме один аргумент - початковий масив товарів 
+  і записуватиме його властивість `items`.
 
   Додай методи класу:
 
