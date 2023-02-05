@@ -178,8 +178,8 @@ const calculator = {
   },
 };
 
-calculator.read(1, 2);
-calculator.add();
+// calculator.read(1, 2);
+// calculator.add();
 
 // const {read, add, mult} = calculator;
 // call

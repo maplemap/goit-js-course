@@ -2,7 +2,8 @@
 
 /*
 ## Example 1 - Блогер
-  Напиши клас `Blogger` для створення об'єкта блогера з наступними властивостями:
+  Напиши клас `Blogger` для створення об'єкта блогера з наступними 
+  властивостями:
 
   - `email` - пошта, рядок
   - `age` - вік, число
@@ -38,6 +39,52 @@
   poly.updatePostCount(4);
   console.log(poly.getInfo()); // User poly@mail.com is 19 years old and has 21 posts
 */
+
+//old school
+// function Blogger({email, age, numberOfPosts, topics}) {
+//   this.email = email;
+//   this.age = age;
+//   this.numberOfPosts = numberOfPosts;
+//   this.topics = topics;
+// }
+
+// Blogger.prototype.getInfo = function () {
+//   return `User ${this.email} is ${this.age} years old and has ${this.numberOfPosts} posts`;
+// };
+
+// Blogger.prototype.updatePostCount = function (count) {
+//   this.numberOfPosts += count;
+// };
+
+//new school
+
+class Blogger {
+  constructor({email, age, numberOfPosts, topics} = {}) {
+    this.email = email;
+    this.age = age;
+    this.numberOfPosts = numberOfPosts;
+    this.topics = topics;
+  }
+
+  getInfo(params) {
+    return `User ${this.email} is ${this.age} years old and has ${this.numberOfPosts} posts`;
+  }
+
+  updatePostCount(count) {
+    this.numberOfPosts += count;
+  }
+}
+
+// const mango = new Blogger({
+//   email: 'mango@mail.com',
+//   age: 24,
+//   numberOfPosts: 20,
+//   topics: ['tech', 'cooking'],
+// });
+// console.log(mango);
+// console.log(mango.getInfo()); // User mango@mail.com is 24 years old and has 20 posts
+// mango.updatePostCount(5);
+// console.log(mango.getInfo()); // User mango@mail.com is 24 years old and has 25 posts
 
 /*
 /*
@@ -84,7 +131,34 @@
   storage.removeItem('🍋');
   console.table(storage.items); // [ '🍎', '🍇', '🍑', '🍌' ]
 */
+// class Storage {
+//   constructor(items) {
+//     this.items = items;
+//   }
 
+//   getItems() {
+//     return this.items;
+//   }
+
+//   addItem(item) {
+//     this.items.push(item);
+//   }
+
+//   removeItem(deletedItem) {
+//     this.items = this.items.filter((item) => item !== deletedItem);
+//   }
+// }
+
+// const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
+
+// const items = storage.getItems();
+// console.table(items); // [ '🍎', '🍋', '🍇', '🍑' ]
+
+// storage.addItem('🍌');
+// console.table(storage.items); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
+
+// storage.removeItem('🍋');
+// console.table(storage.items); // [ '🍎', '🍇', '🍑', '🍌' ]
 /*
 /*
 /*
@@ -132,6 +206,57 @@
   console.log(poly.login); // Polycutie
 */
 
+class User {
+  #login1;
+  #email;
+
+  constructor({login, email}) {
+    this.#login1 = login;
+    this.#email = email;
+  }
+
+  #getLogin() {}
+
+  get login() {
+    const result = this.#getLogin();
+
+    return this.#login1;
+  }
+
+  set login(login) {
+    this.#login1 = login;
+  }
+
+  get email() {
+    return this.#email;
+  }
+
+  set email(email) {
+    this.#email = email;
+  }
+}
+
+class AdminUser extends User {
+  constructor({isAdmin, ...restProps}) {
+    super(restProps);
+    this.isAdmin = isAdmin;
+  }
+}
+
+// const mango = new User({
+//   login: 'Mango',
+//   email: 'mango@dog.woof',
+// });
+
+// console.log(mango);
+
+const pollyAdmin = new AdminUser({
+  isAdmin: true,
+  login: 'Polly',
+  email: 'polly@dog.woof',
+});
+
+console.log(pollyAdmin);
 /*
 /*
 /*
@@ -188,7 +313,53 @@
   myNotes.updateNote('Моя друга замітка', Notes.Priority.HIGH);
   console.log(myNotes.items);
 */
+class Notes {
+  static PRIORITY = {
+    LOW: 'low',
+    NORMAL: 'normal',
+    HIGH: 'high',
+  };
 
+  static getPriority() {
+    return Notes.PRIORITY;
+  }
+
+  constructor(items) {
+    this.items = items;
+  }
+
+  addNote(note) {
+    this.items.push(note);
+  }
+
+  removeNote(noteText) {
+    this.items = this.items.filter(({text}) => text !== noteText);
+  }
+
+  updatePriority() {}
+}
+
+const myNotes = new Notes([]);
+
+console.log(Notes.getPriority());
+
+// myNotes.addNote({
+//   text: 'Моя перша замітка',
+//   priority: Notes.PRIORITY.LOW,
+// });
+// console.log(myNotes.items);
+
+// myNotes.addNote({
+//   text: 'Моя друга замітка',
+//   priority: Notes.PRIORITY.NORMAL,
+// });
+// console.log(myNotes.items);
+
+// myNotes.removeNote('Моя перша замітка');
+// console.log(myNotes.items);
+
+// myNotes.updatePriority('Моя друга замітка', Notes.PRIORITY.HIGH);
+// console.log(myNotes.items);
 /*
 /*
 /*
@@ -231,3 +402,34 @@
   console.log(secondToggle.on);
   console.groupEnd('secondToggle');
 */
+
+const obj1 = {
+  // Прототип
+  a: 5,
+};
+
+const obj2 = Object.create(obj1); // Обєкт на базі протототипу
+obj2.b = 10;
+
+// console.log(obj2);
+
+// private methods and
+class Car {
+  #name;
+
+  constructor() {
+    this.#name = 'name';
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  set name(newName) {
+    this.#name = newName;
+  }
+}
+
+const car = new Car();
+
+// console.log(car.name);
