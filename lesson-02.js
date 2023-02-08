@@ -256,7 +256,7 @@ const pollyAdmin = new AdminUser({
   email: 'polly@dog.woof',
 });
 
-console.log(pollyAdmin);
+// console.log(pollyAdmin);
 /*
 /*
 /*
@@ -341,7 +341,7 @@ class Notes {
 
 const myNotes = new Notes([]);
 
-console.log(Notes.getPriority());
+// console.log(Notes.getPriority());
 
 // myNotes.addNote({
 //   text: 'Моя перша замітка',
@@ -403,33 +403,33 @@ console.log(Notes.getPriority());
   console.groupEnd('secondToggle');
 */
 
-const obj1 = {
-  // Прототип
-  a: 5,
-};
+// const obj1 = {
+//   // Прототип
+//   a: 5,
+// };
 
-const obj2 = Object.create(obj1); // Обєкт на базі протототипу
-obj2.b = 10;
+// const obj2 = Object.create(obj1); // Обєкт на базі протототипу
+// obj2.b = 10;
 
 // console.log(obj2);
 
-// private methods and
-class Car {
-  #name;
+// private methods
+// class Car {
+//   #name;
 
-  constructor() {
-    this.#name = 'name';
-  }
+//   constructor() {
+//     this.#name = 'name';
+//   }
 
-  get name() {
-    return this.#name;
-  }
+//   get name() {
+//     return this.#name;
+//   }
 
-  set name(newName) {
-    this.#name = newName;
-  }
-}
+//   set name(newName) {
+//     this.#name = newName;
+//   }
+// }
 
-const car = new Car();
+// const car = new Car();
 
 // console.log(car.name);
