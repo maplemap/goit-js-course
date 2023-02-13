@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Sandbox</title>
+    <link rel="stylesheet" href="./css/login-form.css">
+</head>
+<body>
+    <ul style="text-align: left;">
+        <li><a href="index.html">To main page</a></li>
+    </ul>
+    <form method="post" action="index.html" class="form">
+        <div class="form__wrapper">
+            <h1>Login</h1>
+            <input type="email" name="email" value="email" class="form__input" />
+            <input type="password" name="password" value="password" class="form__input" />
+            <button type="submit" class="form__submit-btn">Увійти</button>
+        </div> 
+        <div class="form__errors">Логін або пароль не вірні</div>
+    </form>
+    <script src="./js/login-form.js" type="module"></script>
+</body>
+</html>
