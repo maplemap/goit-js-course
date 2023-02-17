@@ -57,12 +57,12 @@
    font-size: 4rem;
  }
  
- #img-div {
+ .img-div {
    text-align: center;
    margin: auto;
  }
  
- #img-div img {
+ .img-div img {
    max-width: 100%;
    display: block;
    margin-left: auto;
