@@ -1,20 +1,14 @@
 ## Plan
 
-Lesson 1(11):
+Lesson 1(13):
 
-- Об'єкти window і document
-- Ієрархія DOM-елементів
-- Пошук DOM-елементів із querySelector
-- Властивість textContent
-- Робота з classList і атрибутами
-- Створення елементів
-- Вставка елементів: append, prepend, before і after
-- Видалення методом remove
-- Властивість innerHTML і метод insertAdjacentHTML
+- Поширення подій
+- Спливання подій
+- Делегування подій
 
-Lesson 2(12):
+Lesson 2(14):
 
-- Основи подій. Створення та видалення слухачів
-- Об'єкт події
-- Скасування поведінки браузера за замовчуванням
-- Події click, change, input, submit, focus, blur і keydown
+- Сhatty events
+- Throttle і debounce подій з бібліотекою Lodash
+- Lazy-loading images: нативна і з бібліотекою lazysizes, vanilla-lazyload або lozad.js
+- Використання бібліотек через CDN"
