@@ -165,28 +165,52 @@ const images = [
   },
 ];
 
-// function showModal(content) {
-//   const modalRef = document.querySelector('.modal');
-//   modalRef.querySelector('.modal-content').innerHTML = content || '';
-//   modalRef.classList.add('show-modal');
+const galleryRef = document.querySelector('.gallery');
+const markup = createMarkup(images);
+galleryRef.innerHTML = markup;
 
-//   modalRef.querySelector('.close-button').addEventListener('click', closeModal);
-//   modalRef.addEventListener('click', onCloseModalByClickOnDropDown);
-// }
+function createMarkup(items) {
+  return items
+    .map(({src, title}) => {
+      return `
+        <li>
+          <img src="${src}" title="${title}" alt="${title}">
+        </li>
+      `;
+    })
+    .join('');
+}
 
-// function closeModal() {
-//   const modalRef = document.querySelector('.modal');
-//   modalRef.querySelector('.modal-content').innerHTML = '';
-//   modalRef.classList.remove('show-modal');
+galleryRef.addEventListener('click', (e) => {
+  if (e.target.nodeName !== 'IMG') {
+    return;
+  }
 
-//   modalRef
-//     .querySelector('.close-button')
-//     .removeEventListener('click', closeModal);
-//   modalRef.removeEventListener('click', onCloseModalByClickOnDropDown);
-// }
+  showModal(e.target.title);
+});
 
-// function onCloseModalByClickOnDropDown(e) {
-//   if (e.target === e.currentTarget) {
-//     closeModal();
-//   }
-// }
+function showModal(content) {
+  const modalRef = document.querySelector('.modal');
+  modalRef.querySelector('.modal-content').innerHTML = content || '';
+  modalRef.classList.add('show-modal');
+
+  modalRef.querySelector('.close-button').addEventListener('click', closeModal);
+  modalRef.addEventListener('click', onCloseModalByClickOnDropDown);
+}
+
+function closeModal() {
+  const modalRef = document.querySelector('.modal');
+  modalRef.querySelector('.modal-content').innerHTML = '';
+  modalRef.classList.remove('show-modal');
+
+  modalRef
+    .querySelector('.close-button')
+    .removeEventListener('click', closeModal);
+  modalRef.removeEventListener('click', onCloseModalByClickOnDropDown);
+}
+
+function onCloseModalByClickOnDropDown(e) {
+  if (e.target === e.currentTarget) {
+    closeModal();
+  }
+}
