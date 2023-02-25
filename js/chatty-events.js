@@ -31,14 +31,30 @@
 
 // window.addEventListener('scroll', debouncedOnScroll);
 
-const onChangeInput = (e) => {
-  fetch('https://jsonplaceholder.typicode.com/posts', {
-    method: 'POST',
-  });
-};
+// const onChangeInput = (e) => {
+//   console.log(e.currentTarget.value);
 
-const debouncedOnChangeInput = _.debounce(onChangeInput, 500);
+//   fetch('https://jsonplaceholder.typicode.com/posts', {
+//     method: 'POST',
+//     body: JSON.stringify({query: e.currentTarget.value}),
+//   });
+// };
 
-document
-  .querySelector('input')
-  .addEventListener('input', debouncedOnChangeInput);
+// const debouncedOnChangeInput = _.debounce(onChangeInput, 500);
+
+// document
+//   .querySelector('input')
+//   .addEventListener('input', debouncedOnChangeInput);
+
+//debounce
+
+// window.addEventListener('scroll', () => {
+//   console.log('clean scroll');
+// });
+
+// const onScroll = () => {
+//   console.log('scroll with debounce');
+// };
+// const debouncedOnScroll = _.debounce(onScroll, 300, {});
+
+// window.addEventListener('scroll', debouncedOnScroll);

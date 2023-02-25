@@ -7,6 +7,15 @@
   (Використати дебаунс)
 */
 
+const formRef = document.querySelector('.form');
+
+formRef.addEventListener(
+  'input',
+  _.debounce((e) => {
+    validator.checkFieldValue(e.target.name, e.target.value);
+  }, 300),
+);
+
 const validator = {
   errors: new Set(),
   messages: {

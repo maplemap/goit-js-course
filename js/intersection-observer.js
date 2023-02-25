@@ -2,22 +2,24 @@
   - Intersection Observer
 */
 
-const images = document.querySelectorAll('.lazyload');
+// let options = {
+//   root: document.querySelector('#scrollArea'),
+//   rootMargin: '0px',
+//   threshold: 1.0
+// }
 
 function handleIntersection(entries) {
-  entries.map((entry) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      console.log(entry.isIntersecting);
-      entry.target.closest('.image-wrapper').classList.add('shown');
-      entry.target.src = entry.target.dataset.src;
-      entry.target.classList.add('loaded');
+      // entry.target.src = entry.target.dataset.src;
+      // entry.target.classList.add('loaded');
       observer.unobserve(entry.target);
-    } else {
-      entry.target.closest('.image-wrapper').classList.remove('shown');
     }
   });
 }
 
 const observer = new IntersectionObserver(handleIntersection);
-
-images.forEach((image) => observer.observe(image));
+const images = document.querySelectorAll('.lazyload');
+images.forEach((image) => {
+  observer.observe(image);
+});
