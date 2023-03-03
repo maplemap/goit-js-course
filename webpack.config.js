@@ -31,9 +31,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    new ESLintPlugin(),
+    // new ESLintPlugin(),
   ],
   devServer: {
-    port: 3000,
+    port: 9000,
   },
 };

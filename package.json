@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/maplemap/goit-js-course#readme",
   "dependencies": {
+    "nanoid": "^4.0.1",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
