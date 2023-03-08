@@ -1,6 +1,7 @@
 ## Plan
 
-Lesson 16:
+Lesson 17:
 
-- localStorage
-- sessionStorage
+- Асинхронність
+- Таймери: setTimeout и setInterval
+- Дата и час
