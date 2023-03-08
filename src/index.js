@@ -1,6 +1,8 @@
 import './styles/common.css';
 /* 
-    - Асинхронність
-    - Таймери: setTimeout и setInterval
-    - Дата и час
+    - Promise API
+    - Методи then, catch, finally
+    - Методи Promise.all, Promise.race
+    - Методи Promise.resolve и Promise.reject
+    - Промисіфикация функцій
 */
