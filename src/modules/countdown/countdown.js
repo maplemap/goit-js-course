@@ -16,24 +16,20 @@ class Countdown {
 
   #calculateData(year) {
     const delta = new Date(year, 0) - Date.now();
-    // const delta = year - Date.now();
 
-    console.log(delta);
+    const days = Math.floor(delta / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.round((delta % (1000 * 60)) / 1000);
 
     if (delta > 0) {
-      const days = Math.floor(delta / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((delta % (1000 * 60)) / 1000);
-
-      console.log({ days, hours, minutes, seconds });
       this.#updateData({ days, hours, minutes, seconds });
     } else {
       this.stop();
     }
   }
 
-  #updateData({ days, hours, minutes, seconds }) {
+  #updateData({ days = 0, hours = 0, minutes = 0, seconds = 0 } = {}) {
     this.#days = days;
     this.#hours = hours;
     this.#minutes = minutes;
@@ -58,13 +54,13 @@ class Countdown {
       return;
     }
 
-    // const date = Date.now() + 4000;
     this.#calculateData(year);
     this.#intervalId = setInterval(() => this.#calculateData(year), 1000);
   }
 
   stop() {
     clearInterval(this.#intervalId);
+    this.#updateData();
   }
 
   static formatValue(value) {
@@ -77,6 +73,10 @@ class Countdown {
 }
 
 // markup
+const ACTION = {
+  START: 'start',
+  STOP: 'stop',
+};
 const markup = `
   <section class="countdown">
       <article id="js-countdown" class="countdown__timer">
@@ -102,6 +102,8 @@ const countdown = new Countdown({ onChange: onCountdownChange });
 //add refs
 const ref = {
   actionForm: document.querySelector('form.countdown__actions'),
+  submitBtn: document.querySelector('form.countdown__actions button[type="submit"]'),
+  yearField: document.querySelector('form.countdown__actions input[name="year"]'),
   days: document.querySelector('.countdown__days'),
   hours: document.querySelector('.countdown__hours'),
   minutes: document.querySelector('.countdown__minutes'),
@@ -110,27 +112,36 @@ const ref = {
 
 ref.actionForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const submitBtn = e.currentTarget.querySelector('button[type="submit"]');
-  const { year, dataset } = e.currentTarget;
 
-  if (e.currentTarget.dataset.action === 'start') {
-    submitBtn.textContent = 'stop';
-    dataset.action = 'stop';
-    year.disabled = true;
-
-    countdown.start(year.value);
+  if (e.currentTarget.dataset.action === ACTION.START) {
+    countdown.start(ref.yearField.value);
+    setFormToStopMode();
   } else {
-    submitBtn.textContent = 'start';
-    dataset.action = 'start';
-    year.disabled = false;
-
     countdown.stop();
+    setFormToStartMode();
   }
 });
 
-function onCountdownChange({ days, hours, minutes, seconds }) {
-  ref.days.textContent = days;
-  ref.hours.textContent = hours;
-  ref.minutes.textContent = minutes;
-  ref.seconds.textContent = seconds;
+function setFormToStartMode() {
+  ref.actionForm.dataset.action = ACTION.START;
+  ref.submitBtn.textContent = ACTION.START;
+  ref.yearField.disabled = false;
+}
+
+function setFormToStopMode() {
+  ref.actionForm.dataset.action = ACTION.STOP;
+  ref.submitBtn.textContent = ACTION.STOP;
+  ref.yearField.disabled = true;
+}
+
+function onCountdownChange(params) {
+  ref.days.textContent = params.days;
+  ref.hours.textContent = params.hours;
+  ref.minutes.textContent = params.minutes;
+  ref.seconds.textContent = params.seconds;
+
+  const isDataReset = Object.values(params).join('').replace(/0/g, '').length === 0;
+  if (isDataReset) {
+    setFormToStartMode();
+  }
 }
