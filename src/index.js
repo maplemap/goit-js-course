@@ -191,27 +191,27 @@ import './styles/common.css';
 // Promise.any
 // чекає лише на перший успішно виконаний проміс і отримує його результат
 
-const promises = [
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject(1);
-    }, 200);
-  }),
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(2);
-    }, 300);
-  }),
-];
+// const promises = [
+//   new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       reject(1);
+//     }, 200);
+//   }),
+//   new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(2);
+//     }, 300);
+//   }),
+// ];
 
-Promise.any(promises)
-  .then((responses) => {
-    console.log('success', responses);
-  })
-  .catch((error) => {
-    console.log('error', error);
-    // AggregateError: All promises were rejected
-  });
+// Promise.any(promises)
+//   .then((responses) => {
+//     console.log('success', responses);
+//   })
+//   .catch((error) => {
+//     console.log('error', error);
+//     // AggregateError: All promises were rejected
+//   });
 
 // HomeWork
 // 1. Добавити розмітку
@@ -219,12 +219,35 @@ Promise.any(promises)
 // 3. Зловити  в події данні з форми - 'delay', 'step', 'amount'
 // 4. Використати 'amount' як кількість запуску функції 'createPromise'
 // 5. Викликати createPromise(position, delay) n разів
-// і використати index як 'position' і delay =  (delay + step) із форми
+// і використати index як 'position' і delay =  (delay + step * index) із форми
 //
+
+document.querySelector('.form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const { delay, step, amount } = e.currentTarget.elements;
+  const delayValue = parseInt(delay.value);
+  const stepValue = parseInt(step.value);
+  const amountValue = parseInt(amount.value);
+
+  const promises = [];
+
+  for (let index = 0; index < amountValue; index++) {
+    const delay = index * stepValue + delayValue;
+    // викликати 'createPromise'
+  }
+
+  e.currentTarget.reset();
+});
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
-    // resolve()
-    // reject()
+    const shouldResolve = Math.random() > 0.3;
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({ position, delay });
+      } else {
+        reject({ position, delay });
+      }
+    }, delay);
   });
 }
