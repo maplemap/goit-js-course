@@ -222,32 +222,32 @@ import './styles/common.css';
 // і використати index як 'position' і delay =  (delay + step * index) із форми
 //
 
-document.querySelector('.form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const { delay, step, amount } = e.currentTarget.elements;
-  const delayValue = parseInt(delay.value);
-  const stepValue = parseInt(step.value);
-  const amountValue = parseInt(amount.value);
+// document.querySelector('.form').addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   const { delay, step, amount } = e.currentTarget.elements;
+//   const delayValue = parseInt(delay.value);
+//   const stepValue = parseInt(step.value);
+//   const amountValue = parseInt(amount.value);
 
-  const promises = [];
+//   const promises = [];
 
-  for (let index = 0; index < amountValue; index++) {
-    const delay = index * stepValue + delayValue;
-    // викликати 'createPromise'
-  }
+//   for (let index = 0; index < amountValue; index++) {
+//     const delay = index * stepValue + delayValue;
+//     // викликати 'createPromise'
+//   }
 
-  e.currentTarget.reset();
-});
+//   e.currentTarget.reset();
+// });
 
-function createPromise(position, delay) {
-  return new Promise((resolve, reject) => {
-    const shouldResolve = Math.random() > 0.3;
-    setTimeout(() => {
-      if (shouldResolve) {
-        resolve({ position, delay });
-      } else {
-        reject({ position, delay });
-      }
-    }, delay);
-  });
-}
+// function createPromise(position, delay) {
+//   return new Promise((resolve, reject) => {
+//     const shouldResolve = Math.random() > 0.3;
+//     setTimeout(() => {
+//       if (shouldResolve) {
+//         resolve({ position, delay });
+//       } else {
+//         reject({ position, delay });
+//       }
+//     }, delay);
+//   });
+// }
