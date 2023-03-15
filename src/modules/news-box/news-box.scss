@@ -1,0 +1,218 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,300,700|Roboto:300,400,700|Roboto+Mono);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css);
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.news-app {
+  color: #333;
+  
+  h2, figure {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .header {
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 0 6px 0 rgb(0 0 0 / 12%);
+    
+    &__wrapper {
+      display: flex;
+      width: 94%;
+      max-width: 700px;
+      height: 4em;
+      line-height: 4em;
+      padding: 0 3%;
+      margin: 0 auto;
+    }
+    
+    &__logo {
+      display: inline-block;
+      font-size: 1.3em;
+      line-height: 3.2em;
+      margin-right: 0.5em;
+      opacity: .8;
+    }
+    
+    &__brand {
+      font-size: 1.3em;
+    }
+  }
+
+  .search {
+    font-family: 'Nunito', sans-serif;
+    max-width: 600px;
+    padding: 0 3%;
+    margin: 2.5em auto 1em auto;
+    
+    &__wrapper {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      height: 3em;
+      border-bottom: 1px solid rgb(0 0 0 / 12%);
+    }
+    
+    &__field {
+      width: 100%;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: 300;
+      margin: 0 1em;
+      border: none;
+      background: none;
+      
+      &:focus-visible {
+        outline: 0;
+      }
+      
+      &::placeholder {
+        font-weight: 300;
+        opacity: .3;
+      }
+    }
+    
+    &__icon {
+      display: block;
+      width: 1em;
+      height: 1.4em;
+      
+      .fa-magnifying-glass {
+        display: inline;
+        font-size: 1.2em;
+      }
+      .fa-circle-notch {
+        display: none;
+      }
+    }
+    
+    &__btn {
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1.5em;
+      padding: 0 .4em;
+
+      &_loading {
+        .search__icon {
+          .fa-magnifying-glass {
+            display: none;
+          }
+          .fa-circle-notch {
+            display: block;
+            animation-name: spin;
+            animation-duration: 800ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+          }
+        }
+      }
+    }
+  }
+  
+  .articles {
+    max-width: 700px;
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+    padding: 4em 3%;
+    margin: 0 auto;
+  }
+  
+  .article {
+    width: 100%;
+    font-family: Roboto, sans-serif;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding: 2em 2.5em;
+    margin: 0 auto;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 12%), 0 1px 4px rgb(0 0 0 / 12%);
+    
+    &__title {
+      font-size: 1.4em;
+      text-align: center;
+      margin: .8em 0 1em 0;
+    }
+    
+    &__publish-date,
+    &__author {
+      position: absolute;
+      top: .8em;
+      right: 0;
+      width: 50%;
+      font-family: Roboto Mono, sans-serif;
+      font-size: .8em;
+      font-weight: 300;
+      text-align: right;
+      text-transform: uppercase;
+      opacity: .8;
+      padding: 0.3em 3% 0.2em 0;
+      background: linear-gradient(to right, hsla(0,0%,100%,0), #eeeded);
+    }
+
+    &__author {
+      left: 0;
+      right: auto;
+      text-align: left;
+      padding-left: 3%;
+      background: linear-gradient(to left, hsla(0,0%,100%,0), #eeeded);
+    }
+    
+    &__image {
+      filter: grayscale(100%);
+      transition: filter .3s;
+      
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    
+    &__content {
+      overflow-wrap: anywhere;
+      margin: 1em 0;
+    }
+    
+    &__time-for-reading {
+      font-family: Roboto Mono, sans-serif;
+      text-align: right;
+      font-size: .8em;
+    }
+    
+    &:hover {
+      .article__image {
+        filter: none;
+      }
+    }
+  }
+  
+  .load-more {
+    display: flex;
+
+    &__btn {
+      width: 30%;
+      text-transform: uppercase;
+      font-size: .8em;
+      border: none;
+      padding: 0.5em 0;
+      background: rgba(0,0,0,.07);
+      cursor: pointer;
+      margin: 0 auto;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform:rotate(0deg);
+    }
+    to {
+      transform:rotate(360deg);
+    }
+  }
+}
+
+

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/maplemap/goit-js-course#readme",
   "dependencies": {
+    "moment": "^2.29.4",
     "nanoid": "^4.0.1",
     "normalize.css": "^8.0.1"
   },
@@ -33,6 +34,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-webpack-plugin": "^4.0.0",
+    "handlebars-loader": "^1.7.3",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
     "prettier": "^2.8.4",
