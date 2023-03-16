@@ -6,6 +6,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 module.exports = {
   target: ['web', 'es4'],
   entry: './src/index.js',
+  devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
