@@ -1,4 +1,4 @@
-const BASE_URL = 'https://sdfsdfsdfnewsapi.org/v2';
+const BASE_URL = 'https://newsapi.org/v2';
 const API_KEY = '364fa8ee9d7346e7bae6dc97f478dce1';
 const OPTIONS = {
   headers: {
