@@ -73,7 +73,7 @@ class NewsBox {
     e.preventDefault();
     const searchQuery = e.currentTarget.elements.search.value;
 
-    this.#articleService
+    this.#articlesService
       .fetchData(searchQuery)
       .then((articles) => {
         this.#updateArticles(articles);
