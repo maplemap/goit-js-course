@@ -28,7 +28,7 @@ class NewsBox {
             </button>
         </div>
     </form>
-    <div class="articles"></article> 
+    <div class="articles"></div> 
     </div>
     <section class="load-more">
     <button class="load-more__btn" hidden>More</button>
