@@ -1,11 +1,10 @@
 import moment from 'moment';
-import ApiArticlesService from '../service/articles';
+import ArticlesService from '../service/articles';
 import articleTpl from './templates/article.hbs';
 
 /* 
     Написати додаток пошуку новин
 */
-const apiArticleService = new ApiArticlesService();
 
 class NewsBox {
   #markup = `
@@ -39,20 +38,20 @@ class NewsBox {
   #targetElement = null;
   #refs = {};
   #articles = [];
-  #articleService = () => {};
+  #articlesService = null;
 
-  constructor({ targetElement, articleService } = {}) {
+  constructor({ targetElement, articlesService } = {}) {
     this.#targetElement = targetElement || document.body;
-    this.#articleService = articleService;
+    this.#articlesService = articlesService;
   }
 
   init() {
-    if (this.#articleService) {
+    if (this.#articlesService) {
       this.#targetElement.innerHTML = this.#markup;
       this.#initRefs();
       this.#initListeners();
     } else {
-      console.log('"articleService" is require');
+      console.log('"articlesService" is require');
     }
   }
 
@@ -74,7 +73,7 @@ class NewsBox {
     e.preventDefault();
     const searchQuery = e.currentTarget.elements.search.value;
 
-    this.#articleService
+    this.#articlesService
       .fetchData(searchQuery)
       .then((articles) => {
         this.#updateArticles(articles);
@@ -109,7 +108,7 @@ class NewsBox {
   }
 }
 
-const newsBox = new NewsBox({ articleService: new ApiArticlesService() });
+const newsBox = new NewsBox({ articlesService: new ArticlesService() });
 newsBox.init();
 
 function parseContent(content) {

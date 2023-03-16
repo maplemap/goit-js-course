@@ -1,19 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito:400,300,700|Roboto:300,400,700|Roboto+Mono);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css);
 
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-
 .news-app {
   color: #333;
-  
-  h2, figure {
-    padding: 0;
-    margin: 0;
-  }
   
   .header {
     font-family: 'Nunito', sans-serif;
@@ -103,10 +92,6 @@ html, body {
           }
           .fa-circle-notch {
             display: block;
-            animation-name: spin;
-            animation-duration: 800ms;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
           }
         }
       }
@@ -118,7 +103,7 @@ html, body {
     display: flex;
     gap: 2em;
     flex-direction: column;
-    padding: 4em 3%;
+    padding: 4em 3% 2em 3%;
     margin: 0 auto;
   }
   
@@ -192,17 +177,43 @@ html, body {
   
   .load-more {
     display: flex;
+    justify-content: center;
+    padding: 1em 0 2em 0;
 
     &__btn {
+      position: relative;
       width: 30%;
+      font-family: Roboto Mono, sans-serif;
       text-transform: uppercase;
-      font-size: .8em;
+      font-size: 1.2em;
       border: none;
       padding: 0.5em 0;
       background: rgba(0,0,0,.07);
       cursor: pointer;
-      margin: 0 auto;
+
+      .loading {
+        display: none;
+        position: absolute;
+        left: 1em;
+      }
+      
+      &_loading {
+        .loading {
+          display: block;
+        }
+      }
+      
+      &_hidden {
+        visibility: hidden;
+      }
     }
+  }
+
+  .fa-circle-notch.loading {
+    animation-name: spin;
+    animation-duration: 800ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
   }
 
   @keyframes spin {
