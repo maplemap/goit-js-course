@@ -1,5 +1,5 @@
-import moment from 'moment';
-import ArticlesService from '../service/articles';
+import articlesService from '../service/articles';
+import notifier from '../service/notifier';
 import articleTpl from './templates/article.hbs';
 
 /* 
@@ -28,117 +28,126 @@ class NewsBox {
             </button>
         </div>
     </form>
-    <div class="articles"></div> 
-    </div>
-    <section class="load-more">
-    <button class="load-more__btn" hidden>More</button>
-    </section>
+      <div class="articles"></div> 
+      </div>
+      <section class="load-more">
+        <button class="load-more__btn load-more__btn_hidden">More</button>
+      </section>
     </section>
     `;
   #targetElement = null;
+  #infinityLoading = false;
+  #searchQuery = null;
   #refs = {};
   #articles = [];
-  #articlesService = null;
 
-  constructor({ targetElement, articlesService } = {}) {
+  constructor({ targetElement, infinityLoading = false } = {}) {
     this.#targetElement = targetElement || document.body;
-    this.#articlesService = articlesService;
+    this.#infinityLoading = infinityLoading;
   }
 
   init() {
-    if (this.#articlesService) {
-      this.#targetElement.innerHTML = this.#markup;
-      this.#initRefs();
-      this.#initListeners();
-    } else {
-      console.log('"articlesService" is require');
+    this.#targetElement.innerHTML = this.#markup;
+    this.#initRefs();
+    this.#initListeners();
+
+    if (this.#infinityLoading) {
+      this.#initInfinityLoading();
     }
   }
 
   #initRefs() {
     this.#refs.search = document.querySelector('.news-app .search');
     this.#refs.articles = document.querySelector('.news-app .articles');
+    this.#refs.moreBtn = document.querySelector('.news-app .load-more__btn');
   }
 
   #initListeners() {
     this.#refs.search.addEventListener('submit', this.#onSearch.bind(this));
+    this.#refs.moreBtn.addEventListener('click', this.#onClickLoadMoreBtn.bind(this));
   }
 
   #updateArticles(articles) {
     this.#articles = articles;
     this.#render();
+
+    if (!this.#infinityLoading) {
+      this.#toggleMoreButton();
+    }
   }
 
   #onSearch(e) {
     e.preventDefault();
-    const searchQuery = e.currentTarget.elements.search.value;
+    this.#searchQuery = e.currentTarget.elements.search.value;
 
-    this.#articlesService
-      .fetchData(searchQuery)
+    this.#fetchArticles()
       .then((articles) => {
+        if (articles.length === 0) {
+          return notifier.info('No results. Please clarify your search');
+        }
+
         this.#updateArticles(articles);
-      })
-      .catch((error) => {
-        console.log(error);
       })
       .finally(() => {
         e.target.reset();
       });
   }
 
-  #render() {
-    const mockup = this.#articles
-      .map(({ author, title, url, urlToImage, publishedAt, content }) => {
-        const { text, timeForReading } = parseContent(content);
+  #fetchArticles() {
+    return articlesService
+      .fetchData(this.#searchQuery)
+      .then((articles) => articles)
+      .catch((error) => {
+        console.error(error); // dev
+        notifier.error('Something went wrong. Please try later'); //
+      });
+  }
 
-        return articleTpl({
-          author,
-          title,
-          url,
-          content,
-          text,
-          urlToImage,
-          timeForReading,
-          publishDate: moment(publishedAt).format('lll'),
-        });
-      })
-      .join('');
+  #loadMore() {
+    return this.#fetchArticles().then((articles) => {
+      this.#updateArticles([...this.#articles, ...articles]);
+    });
+  }
+
+  #onClickLoadMoreBtn() {
+    this.#refs.moreBtn.classList.add('load-more__btn_loading');
+    this.#refs.moreBtn.disabled = true;
+
+    this.#loadMore().finally(() => {
+      this.#refs.moreBtn.classList.remove('load-more__btn_loading');
+      this.#refs.moreBtn.disabled = false;
+    });
+  }
+
+  #toggleMoreButton() {
+    if (this.#articles.length > 0) {
+      this.#refs.moreBtn.classList.remove('load-more__btn_hidden');
+    } else {
+      this.#refs.moreBtn.classList.add('load-more__btn_hidden');
+    }
+  }
+
+  #initInfinityLoading() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && this.#articles.length > 0) {
+            this.#loadMore();
+          }
+        }
+      },
+      { rootMargin: '400px' },
+    );
+
+    observer.observe(this.#refs.moreBtn);
+  }
+
+  #render() {
+    const mockup = this.#articles.map((data) => articleTpl({ ...data })).join('');
 
     this.#refs.articles.innerHTML = mockup;
   }
 }
 
-const newsBox = new NewsBox({ articlesService: new ArticlesService() });
+const newsBox = new NewsBox({ infinityLoading: true });
 newsBox.init();
-
-function parseContent(content) {
-  const firstSeparatorPosition = content.indexOf('[');
-  const secondSeparatorPosition = content.indexOf(']');
-  const parseResult = {
-    text: null,
-    timeForReading: null,
-  };
-
-  if (firstSeparatorPosition >= 0 && secondSeparatorPosition >= 0) {
-    const numberOfChars = parseInt(content.substring(firstSeparatorPosition + 1, secondSeparatorPosition));
-
-    parseResult.text = content.substring(0, firstSeparatorPosition);
-    parseResult.timeForReading = calculateTimeForReading(numberOfChars);
-  }
-
-  return parseResult;
-}
-
-function calculateTimeForReading(numberOfChars) {
-  const minutes = Math.floor(numberOfChars / 255);
-
-  if (minutes === 0) {
-    return 'less then one minute';
-  }
-
-  if (minutes > 0 && minutes < 2) {
-    return 'more then one minute';
-  }
-
-  return `${minutes} minutes`;
-}

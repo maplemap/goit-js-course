@@ -20,7 +20,8 @@
   "dependencies": {
     "moment": "^2.29.4",
     "nanoid": "^4.0.1",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "notiflix": "^3.2.6"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
