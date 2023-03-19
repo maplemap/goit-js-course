@@ -3,7 +3,7 @@ import localStore from '../services/storage';
 
 /*
   Написати Todo-list де можна створювати, видаляти елементи та реалізувати
-  збереження списку в локал сторедж
+  збереження списку в локальний сервер
  */
 
 class TodoList {
@@ -141,77 +141,3 @@ class TodoList {
 
 const todoList = new TodoList();
 todoList.init();
-// console.log(todoList);
-/* 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-/* 
-    JSON (JavaScript Object Notation) – це загальний формат, 
-    який представляє значення та об’єкти.
-  */
-// console.log(
-//   'JSON 1 stringify',
-//   JSON.stringify({
-//     name: 'Mango',
-//     age: 2,
-//   }),
-// );
-
-// console.log(
-//   'JSON 2 stringify',
-//   JSON.stringify([
-//     {
-//       name: 'Mango',
-//       age: 2,
-//     },
-//   ]),
-// );
-
-// console.log('JSON 1 parse', JSON.parse('{"name":"Mango","age":2}'));
-
-// console.log('JSON 2 parse', JSON.parse('[{"name":"Mango","age":2}]'));
-
-// console.log('до JSON');
-
-// try {
-//   const data = JSON.parse('{"name":"Mango","age":2,}');
-//   console.log(data);
-// } catch (error) {
-//   console.log('Ваш JSON не валідний. Стукніть когось!');
-// }
-
-// console.log('після JSON');
-
-// localStorage, sessionStorage
-// setItem(key, value) – зберегти пару ключ/значення.
-// getItem(key) – отримати значення за ключем.
-// removeItem(key) – видалити дані за ключем.
-// clear() – видалити все.
-// key(index) – отримати ключ на заданій позиції.
-// length – кількість збережених елементів.
-
-// localStorage.setItem(
-//   'STORAGE_KEY',
-//   JSON.stringify([
-//     {
-//       name: 'Mango',
-//       age: 2,
-//     },
-//   ]),
-// );
