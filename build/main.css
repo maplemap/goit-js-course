@@ -1,3 +1,7 @@
+/*!***************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/modules/todo-list/todo-list.css ***!
+  \***************************************************************************************/
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 /*!********************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/normalize.css/normalize.css ***!
   \********************************************************************************************/
@@ -354,64 +358,125 @@ template {
 /*!*************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/common.css ***!
   \*************************************************************************/
+
+
+/*!*******************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/modules/todo-list/todo-list.css (1) ***!
+  \*******************************************************************************************/
+*, *::before, *::after {
+  box-sizing: border-box; }
+
 body {
-    padding: 5px 20px;
-}
-
-/*!**************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/modules/gallery/01-gallery.css ***!
-  \**************************************************************************************/
-:root {
-  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  --animation-duration: 250ms;
-}
-
-.gallery {
-  display: grid;
-  max-width: 1140px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-auto-rows: 240px;
-  grid-gap: 12px;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.gallery__item {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
   position: relative;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  background: #eee;
 }
 
-.gallery__image:hover {
-  transform: scale(1.03);
-}
-
-.gallery__image {
-  height: 100%;
+.todo-list .header {
   width: 100%;
-  object-fit: cover;
-  transition: transform var(--animation-duration) var(--timing-function);
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 0 0 10px 10px;
+  background: #25b99a;
+  z-index: 5;
+  box-shadow: 0 2px 4px rgba(50, 50, 50, 0.3);
+  padding: 1em; 
 }
 
-.gallery__link {
-  display: block;
-  text-decoration: none;
+.todo-list .header .header__input {
+  width: 100%;
   height: 100%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  border-radius: 5px 25px 25px 5px;
+  padding: 0.7em 1.2em;
+  font-size: 1.2rem;
+  color: white;
 }
 
-.gallery__link:hover {
-  cursor: zoom-in;
+.todo-list .header .header__button {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
+  border: none;
+  border-radius: 25px;
+  background: white;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #25b99a;
+  cursor: pointer; 
 }
 
-/*!************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/simplelightbox/dist/simple-lightbox.min.css ***!
-  \************************************************************************************************************/
-/*!
-	By André Rinas, www.andrerinas.de
-	Documentation, www.simplelightbox.de
-	Available for use under the MIT License
-	Version 2.12.1
-*/
-body.hidden-scroll{overflow:hidden}.sl-overlay{position:fixed;left:0;right:0;top:0;bottom:0;background:#fff;display:none;z-index:1035}.sl-wrapper{z-index:1040;width:100%;height:100%;left:0;top:0;position:fixed}.sl-wrapper *{box-sizing:border-box}.sl-wrapper button{border:0 none;background:transparent;font-size:28px;padding:0;cursor:pointer}.sl-wrapper button:hover{opacity:0.7}.sl-wrapper .sl-close{display:none;position:fixed;right:30px;top:30px;z-index:10060;margin-top:-14px;margin-right:-14px;height:44px;width:44px;line-height:44px;font-family:Arial,Baskerville,monospace;color:#000;font-size:3rem}.sl-wrapper .sl-counter{display:none;position:fixed;top:30px;left:30px;z-index:10060;color:#000;font-size:1rem}.sl-wrapper .sl-download{display:none;position:fixed;bottom:5px;width:100%;text-align:center;z-index:10060;color:#fff;font-size:1rem}.sl-wrapper .sl-download a{color:#fff}.sl-wrapper .sl-navigation{width:100%;display:none}.sl-wrapper .sl-navigation button{position:fixed;top:50%;margin-top:-22px;height:44px;width:22px;line-height:44px;text-align:center;display:block;z-index:10060;font-family:Arial,Baskerville,monospace;color:#000}.sl-wrapper .sl-navigation button.sl-next{right:5px;font-size:2rem}.sl-wrapper .sl-navigation button.sl-prev{left:5px;font-size:2rem}@media (min-width: 35.5em){.sl-wrapper .sl-navigation button{width:44px}.sl-wrapper .sl-navigation button.sl-next{right:10px;font-size:3rem}.sl-wrapper .sl-navigation button.sl-prev{left:10px;font-size:3rem}}@media (min-width: 50em){.sl-wrapper .sl-navigation button{width:44px}.sl-wrapper .sl-navigation button.sl-next{right:20px;font-size:3rem}.sl-wrapper .sl-navigation button.sl-prev{left:20px;font-size:3rem}}.sl-wrapper.sl-dir-rtl .sl-navigation{direction:ltr}.sl-wrapper .sl-image{position:fixed;-ms-touch-action:none;touch-action:none;z-index:10000}.sl-wrapper .sl-image img{margin:0;padding:0;display:block;border:0 none;width:100%;height:auto}@media (min-width: 35.5em){.sl-wrapper .sl-image img{border:0 none}}@media (min-width: 50em){.sl-wrapper .sl-image img{border:0 none}}.sl-wrapper .sl-image iframe{background:#000;border:0 none}@media (min-width: 35.5em){.sl-wrapper .sl-image iframe{border:0 none}}@media (min-width: 50em){.sl-wrapper .sl-image iframe{border:0 none}}.sl-wrapper .sl-image .sl-caption{display:none;padding:10px;color:#fff;background:rgba(0,0,0,0.8);font-size:1rem;position:absolute;bottom:0;left:0;right:0}.sl-wrapper .sl-image .sl-caption.pos-top{bottom:auto;top:0}.sl-wrapper .sl-image .sl-caption.pos-outside{bottom:auto}.sl-spinner{display:none;border:5px solid #333;border-radius:40px;height:40px;left:50%;margin:-20px 0 0 -20px;opacity:0;position:fixed;top:50%;width:40px;z-index:1007;-webkit-animation:pulsate 1s ease-out infinite;-moz-animation:pulsate 1s ease-out infinite;-ms-animation:pulsate 1s ease-out infinite;-o-animation:pulsate 1s ease-out infinite;animation:pulsate 1s ease-out infinite}.sl-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.sl-transition{transition:-moz-transform ease 200ms;transition:-ms-transform ease 200ms;transition:-o-transform ease 200ms;transition:-webkit-transform ease 200ms;transition:transform ease 200ms}@-webkit-keyframes pulsate{0%{transform:scale(0.1);opacity:0.0}50%{opacity:1}100%{transform:scale(1.2);opacity:0}}@keyframes pulsate{0%{transform:scale(0.1);opacity:0.0}50%{opacity:1}100%{transform:scale(1.2);opacity:0}}@-moz-keyframes pulsate{0%{transform:scale(0.1);opacity:0.0}50%{opacity:1}100%{transform:scale(1.2);opacity:0}}@-o-keyframes pulsate{0%{transform:scale(0.1);opacity:0.0}50%{opacity:1}100%{transform:scale(1.2);opacity:0}}@-ms-keyframes pulsate{0%{transform:scale(0.1);opacity:0.0}50%{opacity:1}100%{transform:scale(1.2);opacity:0}}
+.todo-list main {
+  margin-top: 78px;
+  background: #eee; 
+}
+
+.todo-list hr {
+  width: 50%;
+  color: rgba(50, 50, 50, 0.2); 
+}
+
+.todo-list .list {
+  padding: 1em;
+  margin: 0;
+}
+
+.todo-list .list .list__item {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 1em;
+  margin: 1em 0;
+  font-size: 1.3em;
+  width: 100%;
+  background: white;
+  box-shadow: 0 1px 2px rgba(50, 50, 50, 0.2);
+  border-radius: 3px; 
+}
+
+.todo-list .list .list__buttons {
+  font-size: 1.3rem; 
+}
+
+.todo-list .list .list__button {
+  text-align: center;
+  width: 50px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  font-size: 1.4rem; }
+
+.todo-list .list .fa-trash-o {
+  color: rgba(50, 50, 50, 0.5); 
+}
+
+.todo-list .list .list__bar {
+  color: rgba(50, 50, 50, 0.3);
+  font-size: 1.5rem; 
+}
+
+.todo-list .list.current-list .fa-check-circle-o {
+  color: #25b99a; 
+}
+
+.todo-list .list.done-list .list__item {
+  opacity: .6;
+}
+
+.todo-list .list.done-list .list__item .list__item-name {
+  text-decoration: line-through;
+}
+
+.todo-list .list.done-list .fa-check-circle {
+  color: #25b99a; 
+}
 

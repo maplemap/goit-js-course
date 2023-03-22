@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import localStore from '../services/storage';
+import taskService from '../services/tasks';
 
 /*
   Написати Todo-list де можна створювати, видаляти елементи та реалізувати
@@ -28,7 +28,7 @@ class TodoList {
 
   #refs = {};
 
-  #items = localStore.load(this.#STORAGE_KEY) || [];
+  #items = [];
 
   init(targetNode) {
     const targetElement = targetNode || document.body;
@@ -36,7 +36,8 @@ class TodoList {
 
     this.#defineRefs();
     this.#initListeners();
-    this.#render();
+    this.#getTasks();
+    // this.#render();
   }
 
   #defineRefs() {
@@ -56,20 +57,39 @@ class TodoList {
     this.#refs.itemInput.addEventListener('keypress', this.#addTaskByEnterKey.bind(this));
   }
 
+  #getTasks() {
+    taskService
+      .getTasks()
+      .then((tasks) => {
+        this.#updateItems(tasks);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
   #updateItems(items) {
     this.#items = items;
     this.#render();
-    localStore.save(this.#STORAGE_KEY, items);
   }
 
   #addTask() {
     const { value } = this.#refs.itemInput;
 
     if (value) {
-      const items = [...this.#items];
-      items.push({ id: nanoid(), value, done: false });
+      taskService
+        .createTask({ value, done: false })
+        .then((task) => {
+          // const items = [...this.#items];
+          // items.push(task);
 
-      this.#updateItems(items);
+          // this.#updateItems(items);
+
+          this.#getTasks();
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     }
 
     this.#refs.itemInput.value = null;
@@ -96,23 +116,35 @@ class TodoList {
   }
 
   #removeTask(id) {
-    const items = this.#items.filter((item) => item.id !== id);
-    this.#updateItems(items);
+    taskService
+      .deleteTask(id)
+      .then(() => {
+        // const items = this.#items.filter((item) => item.id !== parseInt(id));
+        // this.#updateItems(items);
+
+        this.#getTasks();
+      })
+      .catch((e) => console.error(e));
   }
 
   #toggleTask(id) {
-    const items = this.#items.map((item) => {
-      if (id === item.id) {
-        return {
-          ...item,
-          done: !item.done,
-        };
-      }
+    const taskIndex = this.#items.findIndex((item) => item.id === parseInt(id));
+    const task = this.#items[taskIndex];
 
-      return item;
-    });
+    taskService
+      .updateTask(id, { done: !task.done })
+      .then((task) => {
+        // const items = [...this.#items];
+        // items.splice(taskIndex, 1, task);
 
-    this.#updateItems(items);
+        // this.#updateItems(items);
+        this.#getTasks();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    // this.#updateItems(items);
   }
 
   #render() {
