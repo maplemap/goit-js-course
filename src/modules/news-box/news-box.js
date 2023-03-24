@@ -1,5 +1,5 @@
-import articlesService from '../services/articles';
-import notifier from '../services/notifier';
+import articlesService from './services/articles';
+import notifier from './services/notifier';
 import articleTpl from './templates/article.hbs';
 
 /* 

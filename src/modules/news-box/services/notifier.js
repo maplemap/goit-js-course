@@ -10,10 +10,6 @@ class Notifier {
       useIcon: false,
       borderRadius: '3px',
       fontFamily: 'Roboto Mono',
-      info: {
-        background: '#d7d7d7',
-        textColor: '#333',
-      },
     });
   }
 

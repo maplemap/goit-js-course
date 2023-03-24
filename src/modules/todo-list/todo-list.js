@@ -1,5 +1,4 @@
-import { nanoid } from 'nanoid';
-import taskService from '../services/tasks';
+import taskService from './services/tasks';
 
 /*
   Написати Todo-list де можна створювати, видаляти елементи та реалізувати
