@@ -76,47 +76,69 @@ class NewsBox {
     }
   }
 
-  #onSearch(e) {
+  async #onSearch(e) {
     e.preventDefault();
     this.#searchQuery = e.currentTarget.elements.search.value;
+    const articles = await this.#fetchArticles();
 
-    this.#fetchArticles()
-      .then((articles) => {
-        if (articles.length === 0) {
-          return notifier.info('No results. Please clarify your search');
-        }
+    if (articles.length > 0) {
+      this.#updateArticles(articles);
+    } else {
+      notifier.info('No results. Please clarify your search');
+    }
+    e.target.reset();
 
-        this.#updateArticles(articles);
-      })
-      .finally(() => {
-        e.target.reset();
-      });
+    // this.#fetchArticles()
+    //   .then((articles) => {
+    //     if (articles.length === 0) {
+    //       return notifier.info('No results. Please clarify your search');
+    //     }
+
+    //     this.#updateArticles(articles);
+    //   })
+    //   .finally(() => {
+    //     e.target.reset();
+    //   });
   }
 
-  #fetchArticles() {
-    return articlesService
-      .fetchData(this.#searchQuery)
-      .then((articles) => articles)
-      .catch((error) => {
-        console.error(error); // dev
-        notifier.error('Something went wrong. Please try later'); //
-      });
+  async #fetchArticles() {
+    try {
+      return await articlesService.fetchData(this.#searchQuery);
+    } catch (error) {
+      console.error(error);
+      notifier.error('Something went wrong. Please try later');
+    }
+
+    // return articlesService
+    //   .fetchData(this.#searchQuery)
+    //   .then((articles) => articles)
+    //   .catch((error) => {
+    //     console.error(error); // dev
+    //     notifier.error('Something went wrong. Please try later');
+    //   });
   }
 
-  #loadMore() {
-    return this.#fetchArticles().then((articles) => {
-      this.#updateArticles([...this.#articles, ...articles]);
-    });
+  async #loadMore() {
+    const articles = await this.#fetchArticles();
+    this.#updateArticles([...this.#articles, ...articles]);
+
+    // return this.#fetchArticles().then((articles) => {
+    //   this.#updateArticles([...this.#articles, ...articles]);
+    // });
   }
 
-  #onClickLoadMoreBtn() {
+  async #onClickLoadMoreBtn() {
     this.#refs.moreBtn.classList.add('load-more__btn_loading');
     this.#refs.moreBtn.disabled = true;
 
-    this.#loadMore().finally(() => {
-      this.#refs.moreBtn.classList.remove('load-more__btn_loading');
-      this.#refs.moreBtn.disabled = false;
-    });
+    await this.#loadMore();
+    this.#refs.moreBtn.classList.remove('load-more__btn_loading');
+    this.#refs.moreBtn.disabled = false;
+
+    // this.#loadMore().finally(() => {
+    //   this.#refs.moreBtn.classList.remove('load-more__btn_loading');
+    //   this.#refs.moreBtn.disabled = false;
+    // });
   }
 
   #toggleMoreButton() {
@@ -149,5 +171,5 @@ class NewsBox {
   }
 }
 
-const newsBox = new NewsBox({ infinityLoading: true });
+const newsBox = new NewsBox({ infinityLoading: false });
 newsBox.init();

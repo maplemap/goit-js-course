@@ -36,7 +36,6 @@ class TodoList {
     this.#defineRefs();
     this.#initListeners();
     this.#getTasks();
-    // this.#render();
   }
 
   #defineRefs() {
@@ -56,15 +55,13 @@ class TodoList {
     this.#refs.itemInput.addEventListener('keypress', this.#addTaskByEnterKey.bind(this));
   }
 
-  #getTasks() {
-    taskService
-      .getTasks()
-      .then((tasks) => {
-        this.#updateItems(tasks);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+  async #getTasks() {
+    try {
+      const tasks = await taskService.getTasks();
+      this.#updateItems(tasks);
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 
   #updateItems(items) {
@@ -72,23 +69,16 @@ class TodoList {
     this.#render();
   }
 
-  #addTask() {
+  async #addTask() {
     const { value } = this.#refs.itemInput;
 
     if (value) {
-      taskService
-        .createTask({ value, done: false })
-        .then((task) => {
-          // const items = [...this.#items];
-          // items.push(task);
-
-          // this.#updateItems(items);
-
-          this.#getTasks();
-        })
-        .catch((e) => {
-          console.error(e);
-        });
+      try {
+        await taskService.createTask({ value, done: false });
+        this.#getTasks();
+      } catch (error) {
+        console.error(error.message);
+      }
     }
 
     this.#refs.itemInput.value = null;
@@ -114,36 +104,25 @@ class TodoList {
     }
   }
 
-  #removeTask(id) {
-    taskService
-      .deleteTask(id)
-      .then(() => {
-        // const items = this.#items.filter((item) => item.id !== parseInt(id));
-        // this.#updateItems(items);
-
-        this.#getTasks();
-      })
-      .catch((e) => console.error(e));
+  async #removeTask(id) {
+    try {
+      await taskService.deleteTask(id);
+      this.#getTasks();
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 
-  #toggleTask(id) {
+  async #toggleTask(id) {
     const taskIndex = this.#items.findIndex((item) => item.id === parseInt(id));
     const task = this.#items[taskIndex];
 
-    taskService
-      .updateTask(id, { done: !task.done })
-      .then((task) => {
-        // const items = [...this.#items];
-        // items.splice(taskIndex, 1, task);
-
-        // this.#updateItems(items);
-        this.#getTasks();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-
-    // this.#updateItems(items);
+    try {
+      await taskService.updateTask(id, { done: !task.done });
+      this.#getTasks();
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   #render() {

@@ -25,10 +25,12 @@ class ArticlesService {
 
     return fetch(`${BASE_URL}/everything?${searchParams}`, OPTIONS)
       .then((response) => response.json())
-      .then(({ articles }) => ArticlesService.prepareData(articles))
-      .catch((error) => {
-        console.error(error);
-      });
+      .then(({ articles }) => ArticlesService.prepareData(articles));
+
+    // const { articles } = await fetch(`${BASE_URL}/everything?${searchParams}`, OPTIONS).then((response) =>
+    //   response.json(),
+    // );
+    // return ArticlesService.prepareData(articles);
   }
 
   static prepareData(articles) {
