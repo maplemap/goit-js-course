@@ -1,0 +1,19 @@
+<article class="article">
+  <h2 class="article__title">{{title}}</h2>
+  <div class="article__publish-date">{{publishDate}}</div>
+  <div class="article__author">{{author}}</div>
+  {{#if urlToImage}}
+    <figure class="article__image">
+      <img src="{{urlToImage}}" alt="article-image">
+    </figure>
+  {{/if}}
+  <div class="article__content">
+  {{#if text}}
+    {{text}}
+  {{/if}}
+    <a href="{{url}}" target='_blank'>read more</a>
+  </div>
+  {{#if timeForReading}}
+    <div class="article__time-for-reading">{{timeForReading}} for reading</div>
+  {{/if}} 
+</article>
