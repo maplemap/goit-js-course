@@ -7,7 +7,7 @@
     "start": "NODE_ENV=development webpack --mode=development",
     "prod": "NODE_ENV=production webpack --mode=production",
     "dev": "webpack-dev-server --mode=development",
-    "server": "json-server --watch db.json"
+    "server": "node server.js"
   },
   "repository": {
     "type": "git",
